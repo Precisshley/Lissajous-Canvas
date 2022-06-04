@@ -22,7 +22,7 @@ function setup() {
 
   //let round = 1;
 
-  createCanvas(1000, 1000);
+  createCanvas(600, 600);
   //pixelDensity(2);
   // data = new [500];
   //data = new Array(500);

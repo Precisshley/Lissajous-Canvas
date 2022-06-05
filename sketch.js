@@ -1,4 +1,4 @@
-let data = new Array(5);
+let data = new Array(500);
 let amount = 10;
 let radi = 0;
 let distance = 20;
@@ -21,9 +21,7 @@ function setup() {
   //#built different
 
   //let round = 1;
-
-  createCanvas(20, 20);
-  //createCanvas(displayWidth, displayHeight);
+  createCanvas(displayWidth, displayHeight);
   //pixelDensity(2);
   // data = new [500];
   //data = new Array(500);

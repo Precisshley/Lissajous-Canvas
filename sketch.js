@@ -1,4 +1,4 @@
-let data = new Array(500);
+let data = new Array(5);
 let amount = 10;
 let radi = 0;
 let distance = 20;

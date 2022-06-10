@@ -21,7 +21,11 @@ function setup() {
   //#built different
 
   //let round = 1;
-  createCanvas(displayWidth, displayHeight);
+  if(windowHeight < windowWidth){
+  createCanvas(windowHeight, windowHeight);
+     } else {
+  createCanvas(windowWidth, windowWidth);
+     }
   //pixelDensity(2);
   // data = new [500];
   //data = new Array(500);

@@ -1,117 +1,546 @@
-let data = new Array(500);
-let amount = 10;
-let radi = 0;
-let distance = 20;
-let whaaa = 0;
-let yeet = 0;
-let mode = 1;
-let d = 10;
-let soup = 255;
-let beans = 50;
-let e = 0;
-let hide = 1;
-let click = 0;
-let trans = 0;
-let transparent = 20;
-let fries = 0;
-  let release = 0;
+//THINGS TO DO:
+//add more colours
+//add preset codes
+//add yeet component of beans(whaaa)
+//steamedHams is a great variable name
+
+let data = new Array(500); //points generated//
+
+//you know what this means (probably)//
+let whaaa = 1;
+let yeet = 1;
+
+let distance = 20; //distance (obviously!)//
+let mode = 1; //graph render setting//
+let polar = 0; //polarity//
+let radi = 0; //graph rotation//
+let amount = 10; //density of data present on screen//
+let click = 0; //menu position//
+let blend = 0; //blendmode setting//
+
+//transparency settings//
+let transSettings = 0;
+let backTrans = 20;
+let lineTrans = 255;
+let fillTrans = 50;
+
+//point, line, triangle settings//
+let lineSettings = 1;
+let pointSpacing = 10;
+
+let bpress = 0; //prints to console if button is pressed or not//
+
+let trails = 0; //whether "o" (Y on controller) is pressed or not//
+let twist = 180; //the direction/speed the graph is generated (I guess?)//
+
+let colour = 0;
+
+let speed = 0.05;
+
+// let t = 200;
+let timerCount = 0;
+let timerRunning = 0;
+
+let analogStickSign = 1;
+let analogStickMap = 1000;
+let check = 1;
+let analogStickTimer;
+let analogsticky;
+
+// function changeTimer() {
+//             t = t++;
+//         }
 
 function setup() {
-  // let[] data;
-  //#built different
+  let cosX,
+    sinY,
+    tanX,
+    tanY,
+    atanY,
+    secX,
+    cscY,
+    cotY,
+    acotY,
+    start0,
+    start1,
+    start2,
+    starty0,
+    starty1,
+    starty2,
+    startw0,
+    startw1,
+    startw2,
+    turn;
+  for (let i = 0; i < 12; i++) {
+    click = i;
+    buttonUpdate(0);
+  }
+  mybutton(0);
+  blendMode(SCREEN);
 
-  //let round = 1;
-  if(windowHeight < windowWidth){
-  createCanvas(windowHeight, windowHeight);
-     } else {
-  createCanvas(windowWidth, windowWidth);
-     }
-  //pixelDensity(2);
-  // data = new [500];
-  //data = new Array(500);
+  if (windowHeight < windowWidth) {
+    createCanvas(windowHeight, windowHeight);
+  } else {
+    createCanvas(windowWidth, windowWidth);
+  }
+
   for (var i = 0; i < data.length; i++) {
     //fill array with different individual values
-    data[i] = i * d;
+    data[i] = i * pointSpacing;
   }
-  yeet = 100.5 * PI;
-
-  //declare
-  whaaa = 0 * PI;
+  whaaa = 1;
 }
 
+function windowResized() {
+  if (windowHeight < windowWidth) {
+    resizeCanvas(windowHeight, windowHeight);
+  } else {
+    resizeCanvas(windowWidth, windowWidth);
+  }
+}
+
+Controller.search();
+
+window.addEventListener(
+  "gc.controller.found",
+  function (event) {
+    var controller = event.detail.controller;
+    console.log("Controller found at index " + controller.index + ".");
+    console.log("'" + controller.name + "' is ready!");
+  },
+  false
+);
+
+window.addEventListener(
+  "gc.controller.lost",
+  function (event) {
+    console.log(
+      "The controller at index " +
+        event.detail.index +
+        " has been disconnected."
+    );
+    console.log(Controller.getController(0));
+  },
+  false
+);
+
+// window.addEventListener(
+//   "gc.button.press",
+//   function (event) {
+//     var button = event.detail;
+//     console.log(button);
+//   },
+//   false
+// );
+
+// window.addEventListener(
+//   "gc.analog.start",
+//   function (event) {
+//     var stick = event.detail;
+//     console.log(stick);
+//   },
+//   false
+// );
+
+function timeIt() {
+  if (Math.abs(analogStickMap) > Math.abs(analogsticky)) {
+    if (Math.sign(analogStickMap) == 1) {
+      buttonUpdate(-1);
+    } else if (Math.sign(analogStickMap) == -1) {
+      buttonUpdate(1);
+    }
+  } else if (Math.abs(analogStickMap) < Math.abs(analogsticky)) {
+    if (analogsticky == 1) {
+      if (click == 11) {
+        click = 0;
+      } else {
+        click++;
+      }
+      mybutton(click);
+    } else if (analogsticky == -1) {
+      if (click == 0) {
+        click = 10;
+      } else {
+        click--;
+      }
+      mybutton(click);
+    }
+  }
+
+  clearInterval(analogStickTimer);
+  analogStickTimer = setInterval(
+    timeIt,
+    map(Math.abs(analogStickMap), 0, 1, 500, 0)
+  );
+}
+
+window.addEventListener(
+  "gc.analog.start",
+  function (event) {
+    if (event.detail.name == "RIGHT_ANALOG_STICK") {
+      analogStickTimer = setInterval(
+        timeIt,
+        map(Math.abs(analogStickMap), 0, 1, 500, 0)
+      );
+      timerRunning = 1;
+    }
+  },
+  false
+);
+
+window.addEventListener(
+  "gc.analog.hold",
+  function (event) {
+    if (event.detail.name == "RIGHT_ANALOG_STICK") {
+      // changeTimer();
+      // analogStickSign = Math.sign(event.detail.position.y);
+      analogStickMap = event.detail.position.y;
+      analogsticky = event.detail.position.x;
+    }
+  },
+  false
+);
+
+window.addEventListener(
+  "gc.analog.end",
+  function (event) {
+    if (event.detail.name == "RIGHT_ANALOG_STICK") {
+      timerRunning = 0;
+      clearInterval(analogStickTimer);
+    }
+  },
+  false
+);
+
 function f1(x, y) {
-  let X = x * cos(radians(y));
+  let X = x * Math.cos(radians(y));
   return X;
 }
 function f2(x, y) {
-  let Y = x * sin(radians(y));
+  let Y = x * Math.sin(radians(y));
   return Y;
 }
 
-function mouseWheel(event) {
-  let m = event.delta;
+function buttonUpdate(ha) {
+  m = ha;
+  let menu1 = document.getElementById("Distance");
+  let menu2 = document.getElementById("Transparency");
+  let menu3 = document.getElementById("Radians");
+  let menu4 = document.getElementById("Lines");
+  let menu5 = document.getElementById("Polarity");
+  let menu6 = document.getElementById("Mode");
+  let menu7 = document.getElementById("Amount");
+  let menu8 = document.getElementById("Twist");
+  let menu9 = document.getElementById("BlendMode");
+  let menu10 = document.getElementById("Colour");
+  let menu11 = document.getElementById("Beans");
+
   if (click == 0) {
     distance = distance + m;
+    menu1.innerText = "Distance: " + nf(distance, 0, 0);
   } else if (click == 1) {
-    if (trans == 0 && transparent + m >= 0 && transparent + m <= 255) {
-      transparent = transparent + m;
-    } else if (trans == 1 && soup + m >= 0 && soup + m <= 255) {
-      soup = soup + m;
-    } else if (trans == 2 && beans + m >= 0 && beans + m <= 255) {
-      beans = beans + m;
+    if (transSettings == 0 && backTrans + m >= 0 && backTrans + m <= 255) {
+      backTrans = backTrans + m;
+      menu2.innerText =
+        "Setting: BACK" + "\nTransparency: " + nf(backTrans, 0, 0) + "/255";
+    } else if (
+      transSettings == 1 &&
+      lineTrans + m >= 0 &&
+      lineTrans + m <= 255
+    ) {
+      lineTrans = lineTrans + m;
+      menu2.innerText =
+        "Setting: LINE" + "\nTransparency: " + nf(lineTrans, 0, 0) + "/255";
+    } else if (
+      transSettings == 2 &&
+      fillTrans + m >= 0 &&
+      fillTrans + m <= 255
+    ) {
+      fillTrans = fillTrans + m;
+      menu2.innerText =
+        "Setting: FILL" + "\nTransparency: " + nf(fillTrans, 0, 0) + "/255";
     }
   } else if (click == 2 && radi + m >= 0 && radi + m <= 360) {
     radi = radi + m;
-  } else if (
-    click == 5 &&
-    d + m >= 1 &&
-    d + m <= 10 &&
-    (fries == 0 || fries == 2)
-  ) {
-    d = d + m;
-  } else if (click == 3 && e + m >= 0 && e + m <= 3) {
-    e = e + m;
+    menu3.innerText = "Radians: " + nf(radi, 0, 0) + "/360";
+  } else if (click == 5 && pointSpacing + m >= 1 && pointSpacing + m <= 10) {
+    if (lineSettings == 1) {
+      menu4.innerText = "Lines: OFF";
+    } else if (lineSettings == 0) {
+      pointSpacing = pointSpacing + m;
+      menu4.innerText =
+        "Lines: LINES" + "\nLine Spacing: " + nf(pointSpacing - 1, 0, 0) + "/9";
+    } else {
+      pointSpacing = pointSpacing + m;
+      menu4.innerText =
+        "Lines: TRIANGLES" +
+        "\nLine Spacing: " +
+        nf(pointSpacing - 1, 0, 0) +
+        "/9";
+    }
+  } else if (click == 3 && polar + m >= 0 && polar + m <= 3) {
+    polar = polar + m;
+    menu5.innerText = "Polarity: " + nf(polar, 0, 0) + "/3";
   } else if (click == 4 && mode + m >= 1 && mode + m <= 8) {
     mode = mode + m;
+    menu6.innerText = "Mode: " + nf(mode - 1, 0, 0) + "/7";
   } else if (click == 6 && amount + m >= 0 && amount + m <= 500) {
     amount = amount + m;
+    menu7.innerText = "Amount: " + nf(amount, 0, 0) + "/500";
+  } else if (click == 7) {
+    twist = twist + m;
+    menu8.innerText = "Twist: " + nf(twist, 0, 0);
+  } else if (click == 8) {
+    if (blend == 0) {
+      bmode = BLEND;
+    } else if (blend == 1) {
+      bmode = SCREEN;
+    } else if (blend == 2) {
+      bmode = ADD;
+    } else if (blend == 3) {
+      bmode = DIFFERENCE;
+    } else if (blend == 4) {
+      bmode = EXCLUSION;
+    } else if (blend == 5) {
+      bmode = LIGHTEST;
+    } else if (blend == 6) {
+      bmode = OVERLAY;
+    } else if (blend == 7) {
+      bmode = HARD_LIGHT;
+    } else if (blend == 8) {
+      bmode = SOFT_LIGHT;
+    } else if (blend == 9) {
+      bmode = DODGE;
+    }
+    menu9.innerText = "BlendMode: " + blenders[blend];
+  } else if (click == 9 && colour + m >= 0 && colour + m <= 5) {
+    colour = colour + m;
+    menu10.innerText = "Colour: " + nf(colour, 0, 0);
+  } else if (click == 10) {
+    //HEREEEEEEE
+    whaaa = whaaa + m;
+    if (yeet == 1000 * PI) {
+      menu11.innerText = "Beans: PI" + "\nwhaaa: " + nf(whaaa, 0, 0);
+    } else if (yeet == 1) {
+      menu11.innerText = "Beans: Normal" + "\nwhaaa: " + nf(whaaa, 0, 0);
+    }
   }
 }
 
-function mouseClicked() {
-  if (click == 0) {
-    click = 1;
-  } else if (click == 1) {
-    click = 2;
-  } else if (click == 2) {
-    click = 3;
-  } else if (click == 3) {
-    click = 4;
-  } else if (click == 4) {
-    click = 5;
-  } else if (click == 5) {
-    click = 6;
-  } else if (click == 6) {
-    click = 0;
+//SCREEN ADD DIFFERENCE EXCLUSION LIGHTEST OVERLAY HARD_LIGHT SOFT_LIGHT DODGE
+
+let blenders = [
+  "DEFAULT",
+  "SCREEN",
+  "ADD",
+  "DIFFERENCE",
+  "EXCLUSION",
+  "LIGHTEST",
+  "OVERLAY",
+  "HARD_LIGHT",
+  "SOFT_LIGHT",
+  "DODGE",
+];
+let elements = [
+  "Distance",
+  "Transparency",
+  "Radians",
+  "Polarity",
+  "Mode",
+  "Lines",
+  "Amount",
+  "Twist",
+  "BlendMode",
+  "Colour",
+  "Beans",
+];
+
+function mybutton(boop) {
+  click = boop;
+  document.getElementById(elements[boop]).style.color = "#FFFFFF";
+  for (let i = 0; i < elements.length; i++) {
+    if (i != boop) {
+      document.getElementById(elements[i]).style.color = "#8B8B8B";
+    }
   }
+  // document.getElementById("demo").innerHTML = "Hello World";
 }
+
+function reset(types) {
+  let clickSave = click;
+  if (types == 0) {
+    distance = 20;
+    transSettings = 0;
+    backTrans = 20;
+    lineTrans = 255;
+    fillTrans = 50;
+    radi = 0;
+    polar = 0;
+    mode = 1;
+    amount = 10;
+    pointSpacing = 10;
+    // lineSettings = 1;
+    // trails = 0;
+    twist = 180;
+    blend = 0;
+    // mybutton(0);
+    for (let i = 0; i < 9; i++) {
+      click = i;
+      buttonUpdate(0);
+    }
+  } else if (types == 1) {
+    mybutton(0);
+    distance = 100;
+    transSettings = 0;
+    backTrans = 20;
+    lineTrans = 255;
+    fillTrans = 50;
+    radi = 3;
+    polar = 1;
+    mode = 6;
+    amount = 1;
+    pointSpacing = 10;
+    // lineSettings = 1;
+    // trails = 0;
+    twist = 1;
+    blend = 1;
+    // mybutton(0);
+    for (let i = 0; i < 10; i++) {
+      click = i;
+      buttonUpdate(0);
+    }
+  }
+  click = clickSave;
+  buttonUpdate(0);
+  mybutton(click);
+}
+
+window.addEventListener(
+  "gc.button.press",
+  function (event) {
+    if (event.detail.name == "RIGHT_SHOULDER") {
+      reset(0);
+    } else if (event.detail.name == "LEFT_SHOULDER") {
+      reset(1);
+    }
+
+    if (event.detail.name == "FACE_4") {
+      trails = 1;
+    }
+
+    if (event.detail.name == "FACE_3") {
+      if (click == 1) {
+        if (transSettings == 2) {
+          transSettings = 0;
+        } else {
+          transSettings++;
+        }
+      } else if (click == 5) {
+        if (lineSettings == 2) {
+          lineSettings = 0;
+        } else {
+          lineSettings++;
+        }
+      } else if (click == 8) {
+        if (blend == 9) {
+          blend = 0;
+        } else {
+          blend++;
+        }
+      } else if (click == 10) {
+        if (yeet == 1000 * PI) {
+          yeet = 1;
+        } else if (yeet == 1) {
+          yeet = 1000 * PI;
+        }
+      }
+      buttonUpdate(0);
+    }
+
+    if (event.detail.name == "FACE_2") {
+
+    }
+    if (event.detail.name == "FACE_1") {
+      save(
+        "WILTC5G-" +
+          distance +
+          "-" +
+          radi +
+          "-" +
+          polar +
+          "-" +
+          amount +
+          "-" +
+          twist +
+          ".png"
+      );
+    }
+
+    if (event.detail.name == "DPAD_UP") {
+      buttonUpdate(1);
+    } else if (event.detail.name == "DPAD_DOWN") {
+      buttonUpdate(-1);
+    } else if (event.detail.name == "DPAD_RIGHT") {
+      if (click == 10) {
+        click = 0;
+      } else {
+        click++;
+      }
+      // buttonUpdate(0);
+      mybutton(click);
+    } else if (event.detail.name == "DPAD_LEFT") {
+      if (click == 0) {
+        click = 10;
+      } else {
+        click--;
+      }
+      // buttonUpdate(0);
+      mybutton(click);
+    }
+    bpress = 1;
+    console.log(bpress);
+  },
+  false
+);
+
+window.addEventListener(
+  "gc.button.release",
+  function (event) {
+    if (event.detail.name == "FACE_4") {
+      trails = 0;
+    }
+
+    bpress = 0;
+    incriment = 25;
+    console.log(bpress);
+  },
+  false
+);
+
+window.addEventListener(
+  "gc.button.hold",
+  function (event) {
+    if (event.detail.name == "DPAD_UP") {
+    } else if (event.detail.name == "DPAD_DOWN") {
+    }
+  },
+  false
+);
 
 function plots(line1x, line1y, line2x, line2y, line3x, line3y) {
-  //add transparency control to menu
-  stroke(255, 255, 255, soup);
-  fill(255, 255, 255, beans);
+  fill(255, 255, 255, fillTrans);
   //color idea
-  //stroke(line1x+150, line2x+150, line3x+150, soup);
-  //fill(line1y+150, line2y+150, line3y+150, beans);
-  if (e == 0 && fries == 1) {
+  stroke(line1x + 150, line2x + 150, line3x + 150, lineTrans);
+  fill(line1y + 150, line2y + 150, line3y + 150, fillTrans);
+  if (polar == 0 && lineSettings == 1) {
     point(line1x, line1y);
-  } else if (e == 0 && fries == 2) {
+  } else if (polar == 0 && lineSettings == 2) {
     triangle(line1x, line1y, line2x, line2y, line3x, line3y);
-  } else if (e == 0) {
+  } else if (polar == 0) {
     line(line1x, line1y, line2x, line2y);
-  } else if (e == 1 && fries == 1) {
+  } else if (polar == 1 && lineSettings == 1) {
     point(f1(line1x, line1y), f2(line1x, line1y));
-  } else if (e == 1 && fries == 2) {
+  } else if (polar == 1 && lineSettings == 2) {
     triangle(
       f1(line1x, line1y),
       f2(line1x, line1y),
@@ -120,19 +549,19 @@ function plots(line1x, line1y, line2x, line2y, line3x, line3y) {
       f1(line3x, line3y),
       f2(line3x, line3y)
     );
-  } else if (e == 1) {
+  } else if (polar == 1) {
     line(
       f1(line1x, line1y),
       f2(line1x, line1y),
       f1(line2x, line2y),
       f2(line2x, line2y)
     );
-  } else if (e == 2 && fries == 1) {
+  } else if (polar == 2 && lineSettings == 1) {
     point(
       f1(f1(line1x, line1y), f2(line1x, line1y)),
       f2(f1(line1x, line1y), f2(line1x, line1y))
     );
-  } else if (e == 2 && fries == 2) {
+  } else if (polar == 2 && lineSettings == 2) {
     triangle(
       f1(f1(line1x, line1y), f2(line1x, line1y)),
       f2(f1(line1x, line1y), f2(line1x, line1y)),
@@ -141,14 +570,14 @@ function plots(line1x, line1y, line2x, line2y, line3x, line3y) {
       f1(f1(line3x, line3y), f2(line3x, line3y)),
       f2(f1(line3x, line3y), f2(line3x, line3y))
     );
-  } else if (e == 2) {
+  } else if (polar == 2) {
     line(
       f1(f1(line1x, line1y), f2(line1x, line1y)),
       f2(f1(line1x, line1y), f2(line1x, line1y)),
       f1(f1(line2x, line2y), f2(line2x, line2y)),
       f2(f1(line2x, line2y), f2(line2x, line2y))
     );
-  } else if (e == 3 && fries == 1) {
+  } else if (polar == 3 && lineSettings == 1) {
     point(
       f1(
         f1(f1(line1x, line1y), f2(line1x, line1y)),
@@ -159,7 +588,7 @@ function plots(line1x, line1y, line2x, line2y, line3x, line3y) {
         f2(f1(line1x, line1y), f2(line1x, line1y))
       )
     );
-  } else if (e == 3 && fries == 2) {
+  } else if (polar == 3 && lineSettings == 2) {
     triangle(
       f1(
         f1(f1(line1x, line1y), f2(line1x, line1y)),
@@ -186,7 +615,7 @@ function plots(line1x, line1y, line2x, line2y, line3x, line3y) {
         f2(f1(line3x, line3y), f2(line3x, line3y))
       )
     );
-  } else if (e == 3) {
+  } else if (polar == 3) {
     line(
       f1(
         f1(f1(line1x, line1y), f2(line1x, line1y)),
@@ -208,264 +637,166 @@ function plots(line1x, line1y, line2x, line2y, line3x, line3y) {
   }
 }
 
+function simplecalc(uno, dos, tres, quatro, sinco) {
+  return ((uno + tres * quatro) / dos) * sinco;
+}
+
 function draw() {
-  whaaa = mouseY / 2;
-  if (keyIsPressed == false) {
-    release = 0;
-  }
+  // console.log(timerValue);
+  fill(255);
+  blendMode(BLEND);
 
-  if (keyIsPressed && key == "s" && release == 0) {
-    //save img
-    //"Users/Kiran/Documents/Processing/GA3_Graphs/frame.jpg"
-    //Users/ashleyanderson/Desktop/Processing Code/What Its Like To Chew 5 Gum
+  // fill(255);
+  // let fps = frameRate();
+  // text("FPS: " + fps.toFixed(2), 10, height - 10);
 
-    saveFrames(
-      "/Users/ashleyanderson/Desktop/Processing Code/What Its Like To Chew 5 Gum/ScreenCaptures/screenshot-######.png"
-    );
-    release = 1;
-  }
-
-  if (keyIsPressed && (key == "o" || key == "O")) {
+  if (trails == 1) {
+    blendMode(bmode);
   } else {
-    fill(0, 0, 0, transparent);
-    //fill(0, 0, 0);
+    blendMode(BLEND);
+    fill(0, 0, 0, backTrans);
     rect(0, 0, width, height);
+    blendMode(bmode);
   }
-
-  if (keyIsPressed && key == "l" && release == 0) {
-    click = 5;
-    if (fries == 0) {
-      fries = 1;
-      release = 1;
-    } else if (fries == 1) {
-      fries = 2;
-      release = 1;
-    } else if (fries == 2) {
-      fries = 0;
-      release = 1;
-    }
-  }
-
-  if (keyIsPressed && key == "t" && release == 0) {
-    click = 1;
-    if (trans == 0) {
-      trans = 1;
-      release = 1;
-    } else if (trans == 1) {
-      trans = 2;
-      release = 1;
-    } else if (trans == 2) {
-      trans = 0;
-      release = 1;
-    }
-  }
-  //if (keyIsPressed && (key == 'm') && (e == 0) && (release == 0)) {
-  //  e = 1;
-  //  release = 1;
-  //} else if (keyIsPressed && (key == 'm') && (e == 1) && (release == 0)) {
-  //  e = 2;
-  //  release = 1;
-  //} else if (keyIsPressed && (key == 'm') && (e == 2) && (release == 0)) {
-  //  e = 3;
-  //  release = 1;
-  //} else if (keyIsPressed && (key == 'm') && (e == 3) && (release == 0)) {
-  //  e = 0;
-  //  release = 1;
-  //}
-  if (keyIsPressed && key == "1") {
-    //modes
-    mode = 1;
-  } else if (keyIsPressed && key == "2") {
-    mode = 2;
-  } else if (keyIsPressed && key == "3") {
-    mode = 3;
-  } else if (keyIsPressed && key == "4") {
-    mode = 4;
-  } else if (keyIsPressed && key == "5") {
-    mode = 5;
-  } else if (keyIsPressed && key == "6") {
-    mode = 6;
-  } else if (keyIsPressed && key == "7") {
-    mode = 7;
-  } else if (keyIsPressed && key == "8") {
-    mode = 8;
-  }
-  stroke(255);
-  let bitch = data;
-  for (var i = 0; i < bitch.length; i++) {
+  for (var i = 0; i < data.length; i++) {
     //points based on clone count of self. Not values inside the array
     push();
     //control interval spacing (added to menu)
     if (i % amount == 0) {
-      translate(width/2, height/2);
+      translate(width / 2, height / 2);
       rotate(radians(i * radi));
-      let cosX = (data[i] / distance) * cos((data[i] / yeet) * 180);
-      let sinY = (data[i] / distance) * sin((data[i] / whaaa) * 180);
-      let tanX = (data[i] / distance) * tan((data[i] / yeet) * 180);
-      let tanY = (data[i] / distance) * tan((data[i] / whaaa) * 180);
-      let atanY = (data[i] / distance) * atan((data[i] / whaaa) * 180);
-      let secX = (data[i] / distance) * (1 / cos((data[i] / yeet) * 180));
-      let cscY = (data[i] / distance) * (1 / sin((data[i] / whaaa) * 180));
-      let cotY = (data[i] / distance) * (1 / tan((data[i] / whaaa) * 180));
-      let acotY = (data[i] / distance) * (1 / atan((data[i] / whaaa) * 180));
+
+      //ADD HERE
+      turn = twist;
+      // simplecalc(data[i], distance, pointSpacing, 0);
+      start0 = simplecalc(data[i], distance, pointSpacing, 0, 1);
+      start1 = simplecalc(data[i], distance, pointSpacing, 1, 1);
+      start2 = simplecalc(data[i], distance, pointSpacing, 2, 1);
+
+      // (uno + tres * quatro) / dos;
+      // (((data[i] + pointSpacing * 2) / yeet) * turn)
+      starty0 = simplecalc(data[i], yeet, pointSpacing, 0, turn);
+      starty1 = simplecalc(data[i], yeet, pointSpacing, 1, turn);
+      starty2 = simplecalc(data[i], whaaa, pointSpacing, 2, turn);
+      startw0 = simplecalc(data[i], whaaa, pointSpacing, 0, turn);
+      startw1 = simplecalc(data[i], whaaa, pointSpacing, 1, turn);
+      startw2 = simplecalc(data[i], whaaa, pointSpacing, 2, turn);
+      // start = data[i] / distance;
+
+      cosX = start0 * Math.cos(starty0);
+      sinY = start0 * Math.sin(startw0);
+      tanX = start0 * Math.tan(starty0);
+      tanY = start0 * Math.tan(startw0);
+      atanY = start0 * Math.atan(startw0);
+      secX = start0 / Math.cos(starty0);
+      cscY = start0 / Math.sin(startw0);
+      cotY = start0 / Math.tan(startw0);
+      acotY = start0 / Math.atan(startw0);
+
+      if (colour == 0) {
+        colorMode(HSB);
+        stroke(map(i, 0, data.length, 0, 360), 100, 50, lineTrans);
+        colorMode(RGB, 255);
+      } else if (colour == 1) {
+        stroke(255, lineTrans);
+      } else if (colour == 2) {
+        stroke(
+          map(i, 0, data.length, 0, 255),
+          map(i, 0, data.length, 0, 255),
+          map(i, 0, data.length, 0, 255),
+          lineTrans
+        );
+      } else if (colour == 3) {
+        stroke(
+          map(i, 0, data.length, 255, 0),
+          map(i, 0, data.length, 255, 0),
+          map(i, 0, data.length, 255, 0),
+          lineTrans
+        );
+      } else if (colour == 4) {
+        stroke(
+          map(i, 0, data.length, 100, 0),
+          map(i, 0, data.length, 0, 100),
+          map(i, 0, data.length, 0, 100),
+          lineTrans
+        );
+      }
+
       if (mode == 1) {
         plots(
           cosX,
           sinY,
-          ((data[i] + d) / distance) * cos(((data[i] + d) / yeet) * 180),
-          ((data[i] + d) / distance) * sin(((data[i] + d) / whaaa) * 180),
-          ((data[i] + d + d) / distance) *
-            cos(((data[i] + d + d) / yeet) * 180),
-          ((data[i] + d + d) / distance) *
-            sin(((data[i] + d + d) / whaaa) * 180)
+          start1 * Math.cos(starty1),
+          start1 * Math.sin(startw1),
+          start2 * Math.cos(starty2),
+          start2 * Math.sin(startw2)
         );
       } else if (mode == 2) {
         plots(
           cosX,
           tanY,
-          ((data[i] + d) / distance) * cos(((data[i] + d) / yeet) * 180),
-          ((data[i] + d) / distance) * tan(((data[i] + d) / whaaa) * 180),
-          ((data[i] + d + d) / distance) *
-            cos(((data[i] + d + d) / yeet) * 180),
-          ((data[i] + d + d) / distance) *
-            tan(((data[i] + d + d) / whaaa) * 180)
+          start1 * Math.cos(starty1),
+          start1 * Math.tan(startw1),
+          start2 * Math.cos(starty2),
+          start2 * Math.tan(startw2)
         );
       } else if (mode == 3) {
         plots(
           tanX,
           tanY,
-          ((data[i] + d) / distance) * tan(((data[i] + d) / yeet) * 180),
-          ((data[i] + d) / distance) * tan(((data[i] + d) / whaaa) * 180),
-          ((data[i] + d + d) / distance) *
-            tan(((data[i] + d + d) / yeet) * 180),
-          ((data[i] + d + d) / distance) *
-            tan(((data[i] + d + d) / whaaa) * 180)
+          start1 * Math.tan(starty1),
+          start1 * Math.tan(startw1),
+          start2 * Math.tan(starty2),
+          start2 * Math.tan(startw2)
         );
       } else if (mode == 4) {
         plots(
           cosX,
           atanY,
-          ((data[i] + d) / distance) * cos(((data[i] + d) / yeet) * 180),
-          ((data[i] + d) / distance) * atan(((data[i] + d) / whaaa) * 180),
-          ((data[i] + d + d) / distance) *
-            cos(((data[i] + d + d) / yeet) * 180),
-          ((data[i] + d + d) / distance) *
-            atan(((data[i] + d + d) / whaaa) * 180)
+          start1 * Math.cos(starty1),
+          start1 * Math.atan(startw1),
+          start2 * Math.cos(starty2),
+          start2 * Math.atan(startw2)
         );
       } else if (mode == 5) {
         plots(
           secX,
           sinY,
-          ((data[i] + d) / distance) * (1 / cos(((data[i] + d) / yeet) * 180)),
-          ((data[i] + d) / distance) * sin(((data[i] + d) / whaaa) * 180),
-          ((data[i] + d + d) / distance) *
-            (1 / cos(((data[i] + d + d) / yeet) * 180)),
-          ((data[i] + d + d) / distance) *
-            sin(((data[i] + d + d) / whaaa) * 180)
+          start1 * (1 / Math.cos(starty1)),
+          start1 * Math.sin(startw1),
+          start2 * (1 / Math.cos(starty2)),
+          start2 * Math.sin(startw2)
         );
       } else if (mode == 6) {
         plots(
           secX,
           cscY,
-          ((data[i] + d) / distance) * (1 / cos(((data[i] + d) / yeet) * 180)),
-          ((data[i] + d) / distance) * (1 / sin(((data[i] + d) / whaaa) * 180)),
-          ((data[i] + d + d) / distance) *
-            (1 / cos(((data[i] + d + d) / yeet) * 180)),
-          ((data[i] + d + d) / distance) *
-            (1 / sin(((data[i] + d + d) / whaaa) * 180))
+          start1 * (1 / Math.cos(starty1)),
+          start1 * (1 / Math.sin(startw1)),
+          start2 * (1 / Math.cos(starty2)),
+          start2 * (1 / Math.sin(startw2))
         );
       } else if (mode == 7) {
         plots(
           secX,
           cotY,
-          ((data[i] + d) / distance) * (1 / cos(((data[i] + d) / yeet) * 180)),
-          ((data[i] + d) / distance) * (1 / tan(((data[i] + d) / whaaa) * 180)),
-          ((data[i] + d + d) / distance) *
-            (1 / cos(((data[i] + d + d) / yeet) * 180)),
-          ((data[i] + d + d) / distance) *
-            (1 / tan(((data[i] + d + d) / whaaa) * 180))
+          start1 * (1 / Math.cos(starty1)),
+          start1 * (1 / Math.tan(startw1)),
+          start2 * (1 / Math.cos(starty2)),
+          start2 * (1 / Math.tan(startw2))
         );
       } else if (mode == 8) {
         plots(
           secX,
           acotY,
-          ((data[i] + d) / distance) * (1 / cos(((data[i] + d) / yeet) * 180)),
-          ((data[i] + d) / distance) *
-            (1 / atan(((data[i] + d) / whaaa) * 180)),
-          ((data[i] + d + d) / distance) *
-            (1 / cos(((data[i] + d + d) / yeet) * 180)),
-          ((data[i] + d + d) / distance) *
-            (1 / atan(((data[i] + d + d) / whaaa) * 180))
+          start1 * (1 / Math.cos(starty1)),
+          start1 * (1 / Math.atan(startw1)),
+          start2 * (1 / Math.cos(starty2)),
+          start2 * (1 / Math.atan(startw2))
         );
       }
-      data[i] = data[i] + 0.05;
+      data[i] = data[i] + speed;
     }
     pop();
-
-    if (keyIsPressed && key == "r" && release == 0) {
-      //reset
-      distance = 20;
-      trans = 0;
-      transparent = 20;
-      soup = 255;
-      beans = 50;
-      radi = 0;
-      e = 0;
-      mode = 1;
-      fries = 0;
-      d = 10;
-      amount = 10;
-      release = 1;
-    }
-
-    if (keyIsPressed && key == "h" && hide == 0 && release == 0) {
-      //hide
-      hide = 1;
-      release = 1;
-    } else if (keyIsPressed && key == "h" && hide == 1 && release == 0) {
-      hide = 0;
-      release = 1;
-    }
-
-    if (hide == 1) {
-      noStroke();
-      fill(0, 255, 0);
-      if (click == 0) {
-        //text
-        text("Distance: " + nf(distance, 0, 0), 3, 15);
-      } else if (click == 1) {
-        if (trans == 0) {
-          text("Setting: BACK", 3, 15);
-          text("Transparency: " + nf(transparent, 0, 0) + "/255", 3, 30);
-        } else if (trans == 1) {
-          text("Setting: LINE", 3, 15);
-          text("Transparency: " + nf(soup, 0, 0) + "/255", 3, 30);
-        } else if (trans == 2) {
-          text("Setting: FILL", 3, 15);
-          text("Transparency: " + nf(beans, 0, 0) + "/255", 3, 30);
-        }
-      } else if (click == 2) {
-        text("Radians: " + nf(radi, 0, 0) + "/360", 3, 15);
-      } else if (click == 3) {
-        text("Polarity: " + nf(e, 0, 0) + "/3", 3, 15);
-      } else if (click == 4) {
-        text("Mode: " + nf(mode - 1, 0, 0) + "/7", 3, 15);
-      } else if (click == 5) {
-        if (fries == 1) {
-          fill(0, 155, 0);
-          text("Lines: OFF", 3, 15);
-        } else {
-          fill(0, 255, 0);
-          if (fries == 0) {
-            text("Lines: LINES", 3, 15);
-          } else {
-            text("Lines: TRIANGLES", 3, 15);
-          }
-          text("Line Spacing: " + nf(d - 1, 0, 0) + "/9", 3, 30);
-        }
-      } else if (click == 6) {
-        text("Amount: " + nf(amount, 0, 0) + "/500", 3, 15);
-      }
-    }
   }
 }

@@ -1,14 +1,32 @@
-<!DOCTYPE html><html lang="en"><head>
-    <script src="p5.js"></script>
-    <script src="p5.sound.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <meta charset="utf-8">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
 
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta charset="utf-8" />
+
+    <script src="https://samiare.github.io/Controller.js/js/Controller.js"></script>
+    <script src="https://samiare.github.io/Controller.js/js/Controller.layouts.js"></script>
   </head>
   <body>
-    <main>
-    </main>
+    <main></main>
+    <div class = "left">
     <script src="sketch.js"></script>
-  
-
-</body></html>
+    </div>
+    <div class = "right">
+    <button id="Distance" onclick="mybutton(0)">Distance:</button>
+    <button id="Transparency" onclick="mybutton(1)">Transparency:</button>
+    <button id="Radians" onclick="mybutton(2)">Radians:</button>
+    <button id="Polarity" onclick="mybutton(3)">Polarity:</button>
+    <button id="Mode" onclick="mybutton(4)">Mode:</button>
+    <button id="Lines" onclick="mybutton(5)">Lines:</button>
+    <button id="Amount" onclick="mybutton(6)">Amount:</button>
+    <button id="Twist" onclick="mybutton(7)">Twist:</button>
+    <button id="BlendMode" onclick="mybutton(8)">BlendMode:</button>
+    <button id="Colour" onclick="mybutton(9)">Colour:</button>
+    <button id="Beans" onclick="mybutton(10)">Beans:</button>
+    </div>
+  </body>
+</html>

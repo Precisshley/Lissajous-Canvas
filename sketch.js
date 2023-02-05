@@ -1,8 +1,9 @@
-//THINGS TO DO:
+//TODO:
 //add more colours
 //add preset codes
 //add yeet component of beans(whaaa)
-//steamedHams is a great variable name
+//convert particles to classes
+//find a way to make code more efficient
 
 let data = new Array(500); //points generated//
 

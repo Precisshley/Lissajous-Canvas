@@ -2,10 +2,9 @@
 //add more colours
 //add preset codes
 //add yeet component of beans(whaaa)
-//convert particles to classes
+//convert particles to classes <--done (working out the kinks):
+// - fix speed increase (expanding universe biz) might not be using "speed" variable since class conversion (maybe delete particles that have increased too much and create new ones)
 //find a way to make code more efficient
-
-let data = new Array(500); //points generated//
 
 //you know what this means (probably)//
 let whaaa = 1;
@@ -48,30 +47,36 @@ let check = 1;
 let analogStickTimer;
 let analogsticky;
 
+let cosX,
+sinY,
+tanX,
+tanY,
+atanY,
+secX,
+cscY,
+cotY,
+acotY,
+start0,
+start1,
+start2,
+starty0,
+starty1,
+starty2,
+startw0,
+startw1,
+startw2,
+turn;
+
 // function changeTimer() {
 //             t = t++;
 //         }
 
 function setup() {
-  let cosX,
-    sinY,
-    tanX,
-    tanY,
-    atanY,
-    secX,
-    cscY,
-    cotY,
-    acotY,
-    start0,
-    start1,
-    start2,
-    starty0,
-    starty1,
-    starty2,
-    startw0,
-    startw1,
-    startw2,
-    turn;
+  particles = [];
+for(let i = 0;i< 500;i++){
+  particles.push(new Particle(i));
+} //points generated//
+
   for (let i = 0; i < 12; i++) {
     click = i;
     buttonUpdate(0);
@@ -85,10 +90,10 @@ function setup() {
     createCanvas(windowWidth, windowWidth);
   }
 
-  for (var i = 0; i < data.length; i++) {
-    //fill array with different individual values
-    data[i] = i * pointSpacing;
-  }
+  // for (var i = 0; i < data.length; i++) {
+  //   //fill array with different individual values
+  //   data[i] = i * pointSpacing;
+  // }
   whaaa = 1;
 }
 
@@ -659,29 +664,41 @@ function draw() {
     rect(0, 0, width, height);
     blendMode(bmode);
   }
-  for (var i = 0; i < data.length; i++) {
+  for (var i = 0; i < particles.length; i++) {
+    particles[i].drawParticle();
     //points based on clone count of self. Not values inside the array
-    push();
+    
+  }
+}
+
+class Particle {
+    constructor(i){
+      this.i = i;
+    }
+  
+    drawParticle() {
+      push();
+      frames = frameCount + (this.i * pointSpacing);
     //control interval spacing (added to menu)
-    if (i % amount == 0) {
+    if (this.i % amount == 0) {
       translate(width / 2, height / 2);
-      rotate(radians(i * radi));
+      rotate(radians(this.i * radi));
 
       //ADD HERE
       turn = twist;
       // simplecalc(data[i], distance, pointSpacing, 0);
-      start0 = simplecalc(data[i], distance, pointSpacing, 0, 1);
-      start1 = simplecalc(data[i], distance, pointSpacing, 1, 1);
-      start2 = simplecalc(data[i], distance, pointSpacing, 2, 1);
+      start0 = simplecalc(frames, distance, pointSpacing, 0, 1);
+      start1 = simplecalc(frames, distance, pointSpacing, 1, 1);
+      start2 = simplecalc(frames, distance, pointSpacing, 2, 1);
 
       // (uno + tres * quatro) / dos;
       // (((data[i] + pointSpacing * 2) / yeet) * turn)
-      starty0 = simplecalc(data[i], yeet, pointSpacing, 0, turn);
-      starty1 = simplecalc(data[i], yeet, pointSpacing, 1, turn);
-      starty2 = simplecalc(data[i], whaaa, pointSpacing, 2, turn);
-      startw0 = simplecalc(data[i], whaaa, pointSpacing, 0, turn);
-      startw1 = simplecalc(data[i], whaaa, pointSpacing, 1, turn);
-      startw2 = simplecalc(data[i], whaaa, pointSpacing, 2, turn);
+      starty0 = simplecalc(frames, yeet, pointSpacing, 0, turn);
+      starty1 = simplecalc(frames, yeet, pointSpacing, 1, turn);
+      starty2 = simplecalc(frames, whaaa, pointSpacing, 2, turn);
+      startw0 = simplecalc(frames, whaaa, pointSpacing, 0, turn);
+      startw1 = simplecalc(frames, whaaa, pointSpacing, 1, turn);
+      startw2 = simplecalc(frames, whaaa, pointSpacing, 2, turn);
       // start = data[i] / distance;
 
       cosX = start0 * Math.cos(starty0);
@@ -696,7 +713,7 @@ function draw() {
 
       if (colour == 0) {
         colorMode(HSB);
-        stroke(map(i, 0, data.length, 0, 360), 100, 50, lineTrans);
+        stroke(map(this.i, 0, particles.length, 0, 360), 100, 50, lineTrans);
         colorMode(RGB, 255);
       } else if (colour == 1) {
         stroke(255, lineTrans);
@@ -796,8 +813,9 @@ function draw() {
           start2 * (1 / Math.atan(startw2))
         );
       }
-      data[i] = data[i] + speed;
+      // data[i] = data[i] + speed;
     }
     pop();
-  }
+    }
+    
 }

@@ -686,6 +686,37 @@ class Particle {
 
       //ADD HERE
       turn = twist;
+
+      if (colour == 0) {
+        colorMode(HSB);
+        stroke(map(this.i, 0, particles.length, 0, 360), 100, 50, lineTrans);
+        colorMode(RGB, 255);
+      } else if (colour == 1) {
+        stroke(255, lineTrans);
+      } else if (colour == 2) {
+        stroke(
+          map(i, 0, particles.length, 0, 255),
+          map(i, 0, particles.length, 0, 255),
+          map(i, 0, particles.length, 0, 255),
+          lineTrans
+        );
+      } else if (colour == 3) {
+        stroke(
+          map(i, 0, particles.length, 255, 0),
+          map(i, 0, particles.length, 255, 0),
+          map(i, 0, particles.length, 255, 0),
+          lineTrans
+        );
+      } else if (colour == 4) {
+        stroke(
+          map(i, 0, particles.length, 100, 0),
+          map(i, 0, particles.length, 0, 100),
+          map(i, 0, particles.length, 0, 100),
+          lineTrans
+        );
+      }
+
+
       // simplecalc(data[i], distance, pointSpacing, 0);
       start0 = simplecalc(frames, distance, pointSpacing, 0, 1);
       start1 = simplecalc(frames, distance, pointSpacing, 1, 1);
@@ -710,35 +741,6 @@ class Particle {
       cscY = start0 / Math.sin(startw0);
       cotY = start0 / Math.tan(startw0);
       acotY = start0 / Math.atan(startw0);
-
-      if (colour == 0) {
-        colorMode(HSB);
-        stroke(map(this.i, 0, particles.length, 0, 360), 100, 50, lineTrans);
-        colorMode(RGB, 255);
-      } else if (colour == 1) {
-        stroke(255, lineTrans);
-      } else if (colour == 2) {
-        stroke(
-          map(i, 0, data.length, 0, 255),
-          map(i, 0, data.length, 0, 255),
-          map(i, 0, data.length, 0, 255),
-          lineTrans
-        );
-      } else if (colour == 3) {
-        stroke(
-          map(i, 0, data.length, 255, 0),
-          map(i, 0, data.length, 255, 0),
-          map(i, 0, data.length, 255, 0),
-          lineTrans
-        );
-      } else if (colour == 4) {
-        stroke(
-          map(i, 0, data.length, 100, 0),
-          map(i, 0, data.length, 0, 100),
-          map(i, 0, data.length, 0, 100),
-          lineTrans
-        );
-      }
 
       if (mode == 1) {
         plots(

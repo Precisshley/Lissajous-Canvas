@@ -538,6 +538,7 @@ function plots(line1x, line1y, line2x, line2y, line3x, line3y) {
   //color idea
   stroke(line1x + 150, line2x + 150, line3x + 150, lineTrans);
   fill(line1y + 150, line2y + 150, line3y + 150, fillTrans);
+  //NEST SOME IF AND ELSE IF SHIT DAWG THIS TAKES FOREVER TO FIGURE OUT WHAT TO DRAW 
   if (polar == 0 && lineSettings == 1) {
     point(line1x, line1y);
   } else if (polar == 0 && lineSettings == 2) {
@@ -715,8 +716,7 @@ class Particle {
           lineTrans
         );
       }
-
-
+//THIS ALL DOESNT NEED TO BE UPDATED EVERYTIME DEPENDING ON MODE
       // simplecalc(data[i], distance, pointSpacing, 0);
       start0 = simplecalc(frames, distance, pointSpacing, 0, 1);
       start1 = simplecalc(frames, distance, pointSpacing, 1, 1);
@@ -743,6 +743,7 @@ class Particle {
       acotY = start0 / Math.atan(startw0);
 
       if (mode == 1) {
+//NOT ALL OF THESE VALUES NEED TO BE UPDATED AND SENT TO PLOTS DEPENDING ON THE LINE SETTINGS
         plots(
           cosX,
           sinY,

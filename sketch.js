@@ -726,27 +726,18 @@ class Particle {
       // (((data[i] + pointSpacing * 2) / yeet) * turn)
       starty0 = simplecalc(frames, yeet, pointSpacing, 0, turn);
       starty1 = simplecalc(frames, yeet, pointSpacing, 1, turn);
-      starty2 = simplecalc(frames, whaaa, pointSpacing, 2, turn);
+      starty2 = simplecalc(frames, yeet, pointSpacing, 2, turn);
       startw0 = simplecalc(frames, whaaa, pointSpacing, 0, turn);
       startw1 = simplecalc(frames, whaaa, pointSpacing, 1, turn);
       startw2 = simplecalc(frames, whaaa, pointSpacing, 2, turn);
       // start = data[i] / distance;
 
-      cosX = start0 * Math.cos(starty0);
-      sinY = start0 * Math.sin(startw0);
-      tanX = start0 * Math.tan(starty0);
-      tanY = start0 * Math.tan(startw0);
-      atanY = start0 * Math.atan(startw0);
-      secX = start0 / Math.cos(starty0);
-      cscY = start0 / Math.sin(startw0);
-      cotY = start0 / Math.tan(startw0);
-      acotY = start0 / Math.atan(startw0);
-
       if (mode == 1) {
 //NOT ALL OF THESE VALUES NEED TO BE UPDATED AND SENT TO PLOTS DEPENDING ON THE LINE SETTINGS
+//DONT CALCULATE 2nd AND 3rd POINTS, JUST GET THEM FROM THE THE OTHER PARTICLES
         plots(
-          cosX,
-          sinY,
+          start0 * Math.cos(starty0),
+          start0 * Math.sin(startw0),
           start1 * Math.cos(starty1),
           start1 * Math.sin(startw1),
           start2 * Math.cos(starty2),
@@ -754,8 +745,8 @@ class Particle {
         );
       } else if (mode == 2) {
         plots(
-          cosX,
-          tanY,
+          start0 * Math.cos(starty0),
+          start0 * Math.tan(startw0),
           start1 * Math.cos(starty1),
           start1 * Math.tan(startw1),
           start2 * Math.cos(starty2),
@@ -763,8 +754,8 @@ class Particle {
         );
       } else if (mode == 3) {
         plots(
-          tanX,
-          tanY,
+          start0 * Math.tan(starty0),
+          start0 * Math.tan(startw0),
           start1 * Math.tan(starty1),
           start1 * Math.tan(startw1),
           start2 * Math.tan(starty2),
@@ -772,8 +763,8 @@ class Particle {
         );
       } else if (mode == 4) {
         plots(
-          cosX,
-          atanY,
+          start0 * Math.cos(starty0),
+          start0 * Math.atan(startw0),
           start1 * Math.cos(starty1),
           start1 * Math.atan(startw1),
           start2 * Math.cos(starty2),
@@ -781,8 +772,8 @@ class Particle {
         );
       } else if (mode == 5) {
         plots(
-          secX,
-          sinY,
+          start0 * (1 / Math.cos(starty0)),
+          start0 * Math.sin(startw0),
           start1 * (1 / Math.cos(starty1)),
           start1 * Math.sin(startw1),
           start2 * (1 / Math.cos(starty2)),
@@ -790,8 +781,8 @@ class Particle {
         );
       } else if (mode == 6) {
         plots(
-          secX,
-          cscY,
+          start0 * (1 / Math.cos(starty0)),
+          start0 * (1 / Math.sin(startw0)),
           start1 * (1 / Math.cos(starty1)),
           start1 * (1 / Math.sin(startw1)),
           start2 * (1 / Math.cos(starty2)),
@@ -799,8 +790,8 @@ class Particle {
         );
       } else if (mode == 7) {
         plots(
-          secX,
-          cotY,
+          start0 * (1 / Math.cos(starty0)),
+          start0 * (1 / Math.tan(startw0)),
           start1 * (1 / Math.cos(starty1)),
           start1 * (1 / Math.tan(startw1)),
           start2 * (1 / Math.cos(starty2)),
@@ -808,8 +799,8 @@ class Particle {
         );
       } else if (mode == 8) {
         plots(
-          secX,
-          acotY,
+          start0 * (1 / Math.cos(starty0)),
+          start0 * (1 / Math.atan(startw0)),
           start1 * (1 / Math.cos(starty1)),
           start1 * (1 / Math.atan(startw1)),
           start2 * (1 / Math.cos(starty2)),

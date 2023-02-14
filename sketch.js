@@ -148,15 +148,13 @@ class Particle {
   return ab
   }
 
-  simplecalc(dos, tres, quatro, sinco) {
-    return (((frameCount + (this.i * pointSpacing)) + tres * quatro) / dos) * sinco;
-  }
-
   getPoints(){
 
-    start0 = this.simplecalc(distance, pointSpacing, 0, 1);
-    starty0 = this.simplecalc(yeet, pointSpacing, 0, twist);
-    startw0 = this.simplecalc(whaaa, pointSpacing, 0, twist);
+    let calc = frameCount + (this.i * pointSpacing)
+
+    start0 = calc / distance;
+    starty0 = calc / yeet * twist;
+    startw0 = calc / whaaa * twist;
 
     let x;
     let y;

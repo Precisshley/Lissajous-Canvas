@@ -13,9 +13,9 @@
 
 function setup() {
   particles = [];
-for(let i = 0;i< 500;i++){
-  particles.push(new Particle(i));
-} //points generated//
+  for (let i = 0; i < 500; i++) {
+    particles.push(new Particle(i));
+  } //points generated//
 
   for (let i = 0; i < 12; i++) {
     click = i;
@@ -42,7 +42,6 @@ function windowResized() {
 }
 
 function draw() {
-  // console.log(timerValue);
   fill(255);
   blendMode(BLEND);
 
@@ -58,15 +57,16 @@ function draw() {
     rect(0, 0, width, height);
     blendMode(bmode);
   }
+
   for (var i = 0; i < particles.length; i++) {
     particles[i].drawParticle();
     //points based on clone count of self. Not values inside the array
-    
+
   }
 }
 
 class Particle {
-  constructor(i){
+  constructor(i) {
     this.i = i;
   }
 
@@ -103,18 +103,16 @@ class Particle {
 
   drawParticle() {
     push();
-      // frames = frameCount + (this.i * pointSpacing);
-      //control interval spacing (added to menu)
-      if (this.i % amount == 0) {
-        translate(width / 2, height / 2);
-        rotate(radians(this.i * radi));
+    // frames = frameCount + (this.i * pointSpacing);
+    //control interval spacing (added to menu)
+    if (this.i % amount == 0) {
+      translate(width / 2, height / 2);
+      rotate(radians(this.i * radi));
 
       //ADD HERE
       // turn = twist;
 
       this.colorSetting();
-
-      this.getPoints();
 
       //color ideas
       fill(255, 255, 255, fillTrans);
@@ -129,15 +127,15 @@ class Particle {
       //fix colors
       beginShape();
       vertex.apply(null, this.getPoints());
-      for (var j = 0; j < lineSettings+1; j++) {
-      vertex.apply(null, particles[this.i + j].getPoints());
+      for (var j = 0; j < lineSettings + 1; j++) {
+        vertex.apply(null, particles[this.i + j].getPoints());
       }
       vertex.apply(null, this.getPoints());
       endShape();
 
-    // data[i] = data[i] + speed;
-  }
-  pop();
+      // data[i] = data[i] + speed;
+    }
+    pop();
   }
 
   getPolar(a, b) {
@@ -145,16 +143,16 @@ class Particle {
     for (var i = 0; i < polar; i++) {
       ab = this.f.apply(null, ab)
     }
-  return ab
+    return ab
   }
 
-  getPoints(){
+  getPoints() {
 
     let calc = frameCount + (this.i * pointSpacing)
 
-    start0 = calc / distance;
-    starty0 = calc / yeet * twist;
-    startw0 = calc / whaaa * twist;
+    let start0 = calc / distance;
+    let starty0 = calc / yeet * twist;
+    let startw0 = calc / whaaa * twist;
 
     let x;
     let y;
@@ -192,7 +190,7 @@ class Particle {
       y = start0 * (1 / Math.atan(startw0))
     }
 
-    return this.getPolar(x,y)
+    return this.getPolar(x, y)
   }
 
   f(x, y) {

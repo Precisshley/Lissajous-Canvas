@@ -39,26 +39,6 @@ let check = 1;
 let analogStickTimer;
 let analogsticky;
 
-let cosX,
-sinY,
-tanX,
-tanY,
-atanY,
-secX,
-cscY,
-cotY,
-acotY,
-start0,
-start1,
-start2,
-starty0,
-starty1,
-starty2,
-startw0,
-startw1,
-startw2,
-turn;
-
 let blenders = [
     "DEFAULT",
     "SCREEN",

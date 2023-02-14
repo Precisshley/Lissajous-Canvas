@@ -4,7 +4,7 @@ let yeet = 1;
 
 let distance = 20; //distance (obviously!)//
 let mode = 1; //graph render setting//
-let polar = 0; //polarity//
+let polar = 1; //polarity//
 let radi = 0; //graph rotation//
 let amount = 10; //density of data present on screen//
 let click = 0; //menu position//

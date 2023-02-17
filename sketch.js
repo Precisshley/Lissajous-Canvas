@@ -29,7 +29,6 @@ function setup() {
   } else {
     createCanvas(windowWidth, windowWidth);
   }
-
   whaaa = 1;
 }
 
@@ -61,7 +60,6 @@ function draw() {
   for (var i = 0; i < particles.length; i++) {
     particles[i].drawParticle();
     //points based on clone count of self. Not values inside the array
-
   }
 }
 
@@ -119,7 +117,6 @@ class Particle {
       // stroke(line1x + 150, line2x + 150, line3x + 150, lineTrans);
       // fill(line1y + 150, line2y + 150, line3y + 150, fillTrans);
 
-
       //fix lineSettings
       //fix amount
       //fix polar limits
@@ -127,8 +124,10 @@ class Particle {
       //fix colors
       beginShape();
       vertex.apply(null, this.getPoints());
-      for (var j = 0; j < lineSettings + 1; j++) {
-        vertex.apply(null, particles[this.i + j].getPoints());
+      if (this.i + lineSettings + 1 <= particles.length){ //maybe working
+        for (var j = 0; j < lineSettings + 1; j++) {
+          vertex.apply(null, particles[this.i + j].getPoints());
+        }
       }
       vertex.apply(null, this.getPoints());
       endShape();
@@ -138,65 +137,64 @@ class Particle {
     pop();
   }
 
-  getPolar(a, b) {
-    let ab = [a, b];
-    for (var i = 0; i < polar; i++) {
-      ab = this.f.apply(null, ab)
-    }
-    return ab
-  }
-
   getPoints() {
 
     let calc = frameCount + (this.i * pointSpacing)
 
-    let start0 = calc / distance;
-    let starty0 = calc / yeet * twist;
-    let startw0 = calc / whaaa * twist;
+    let start = calc / distance;
+    let starty = calc / yeet * twist;
+    let startw = calc / whaaa * twist;
 
     let x;
     let y;
 
     if (mode == 1) {
-      x = start0 * Math.cos(starty0)
-      y = start0 * Math.sin(startw0)
+      x = start * Math.cos(starty)
+      y = start * Math.sin(startw)
 
     } else if (mode == 2) {
-      x = start0 * Math.cos(starty0)
-      y = start0 * Math.tan(startw0)
+      x = start * Math.cos(starty)
+      y = start * Math.tan(startw)
 
     } else if (mode == 3) {
-      x = start0 * Math.tan(starty0)
-      y = start0 * Math.tan(startw0)
+      x = start * Math.tan(starty)
+      y = start * Math.tan(startw)
 
     } else if (mode == 4) {
-      x = start0 * Math.cos(starty0)
-      y = start0 * Math.atan(startw0)
+      x = start * Math.cos(starty)
+      y = start * Math.atan(startw)
 
     } else if (mode == 5) {
-      x = start0 * (1 / Math.cos(starty0))
-      y = start0 * Math.sin(startw0)
+      x = start * (1 / Math.cos(starty))
+      y = start * Math.sin(startw)
 
     } else if (mode == 6) {
-      x = start0 * (1 / Math.cos(starty0))
-      y = start0 * (1 / Math.sin(startw0))
+      x = start * (1 / Math.cos(starty))
+      y = start * (1 / Math.sin(startw))
 
     } else if (mode == 7) {
-      x = start0 * (1 / Math.cos(starty0))
-      y = start0 * (1 / Math.tan(startw0))
+      x = start * (1 / Math.cos(starty))
+      y = start * (1 / Math.tan(startw))
 
     } else if (mode == 8) {
-      x = start0 * (1 / Math.cos(starty0))
-      y = start0 * (1 / Math.atan(startw0))
+      x = start * (1 / Math.cos(starty))
+      y = start * (1 / Math.atan(startw))
     }
 
     return this.getPolar(x, y)
   }
 
-  f(x, y) {
+  calcPolar(x, y) {
     let X = x * Math.cos(radians(y));
     let Y = x * Math.sin(radians(y));
     return [X, Y]
   }
 
+  getPolar(a, b) {
+    let ab = [a, b];
+    for (var i = 0; i < polar; i++) {
+      ab = this.calcPolar.apply(null, ab)
+    }
+    return ab
+  }
 }

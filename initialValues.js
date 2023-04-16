@@ -65,3 +65,5 @@ let blenders = [
     "Colour",
     "Beans",
   ];
+
+  let eyes = new keyboard();

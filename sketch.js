@@ -19,7 +19,7 @@ function setup() {
 
   for (let i = 0; i < 12; i++) {
     click = i;
-    buttonUpdate(0);
+    eyes.buttonUpdate(0);
   }
   mybutton(0);
   blendMode(SCREEN);
@@ -49,18 +49,42 @@ function draw() {
   // console.log("FPS: " + fps.toFixed(2), 10, height - 10);
 
   if (trails == 1) {
-    blendMode(bmode);
+    blendHelper()
   } else {
     blendMode(BLEND);
     fill(0, 0, 0, backTrans);
     rect(0, 0, width, height);
-    blendMode(bmode);
+    blendHelper()
   }
 
   for (var i = 0; i < particles.length; i++) {
     particles[i].drawParticle();
     //points based on clone count of self. Not values inside the array
   }
+}
+
+function blendHelper(){
+  if (blend == 0) {
+    blendMode(BLEND);
+} else if (blend == 1) {
+    blendMode(SCREEN);
+} else if (blend == 2) {
+    blendMode(ADD);
+} else if (blend == 3) {
+    blendMode(DIFFERENCE);
+} else if (blend == 4) {
+    blendMode(EXCLUSION);
+} else if (blend == 5) {
+    blendMode(LIGHTEST);
+} else if (blend == 6) {
+    blendMode(OVERLAY);
+} else if (blend == 7) {
+    blendMode(HARD_LIGHT);
+} else if (blend == 8) {
+    blendMode(SOFT_LIGHT);
+} else if (blend == 9) {
+    blendMode(DODGE);
+}
 }
 
 class Particle {

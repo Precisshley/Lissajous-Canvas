@@ -1,6 +1,5 @@
 class keyboard {
     constructor() {}
-    reset() {}
     screenshot() {
         save(
             "WILTC5G-" +
@@ -198,6 +197,15 @@ class keyboard {
     }
 }
 
+function mybutton(boop) {   //changes click when mouse presses buttons
+    click = boop;
+    document.getElementById(elements[boop]).style.color = "#FFFFFF";
+    for (let i = 0; i < elements.length; i++) {
+        if (i != boop) {
+            document.getElementById(elements[i]).style.color = "#8B8B8B";
+        }
+    }
+}
 
 // document.addEventListener('keydown', (event) => {
 //     var name = event.key;

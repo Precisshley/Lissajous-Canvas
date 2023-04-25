@@ -25,6 +25,16 @@ class keyboard {
             } else {
                 transSettings++;
             }
+            let menu2 = document.getElementById("TransparencyNV");
+            if (transSettings == 0) {
+                menu2.value = backTrans;
+            } else if (transSettings == 1) {
+                menu2.value = lineTrans;
+            } else {
+                menu2.value = fillTrans;
+            }
+            let menu12 = document.getElementById("TransparencyV");
+            menu12.value = str(transSettings);
         } else if (click == 5) {
             if (lineSettings == 2) {
                 lineSettings = 0;
@@ -59,7 +69,7 @@ class keyboard {
         fillTrans = 50;
         radi = 0;
         polar = 0;
-        mode = 1;
+        mode = 0;
         amount = 10;
         pointSpacing = 10;
         // lineSettings = 1;
@@ -103,46 +113,35 @@ class keyboard {
     }
     buttonUpdate(ha) {
         let m = ha;
-        let menu1 = document.getElementById("Distance");
-        let menu2 = document.getElementById("Transparency");
-        let menu3 = document.getElementById("Radians");
+        let menu1 = document.getElementById("DistanceV");
+        let menu2 = document.getElementById("TransparencyNV");
+        let menu3 = document.getElementById("RadiansV");
         let menu4 = document.getElementById("Lines");
-        let menu5 = document.getElementById("Polarity");
-        let menu6 = document.getElementById("Mode");
-        let menu7 = document.getElementById("Amount");
-        let menu8 = document.getElementById("Twist");
-        let menu9 = document.getElementById("BlendMode");
+        let menu5 = document.getElementById("PolarityV");
+        let menu6 = document.getElementById("ModeV");
+        let menu7 = document.getElementById("AmountV");
+        let menu8 = document.getElementById("TwistV");
+        let menu9 = document.getElementById("BlendModeV");
         let menu10 = document.getElementById("Colour");
         let menu11 = document.getElementById("Beans");
     
         if (click == 0) {
-            distance = distance + m;
-            menu1.innerText = "Distance: " + nf(distance, 0, 0);
+            distance = int(distance) + m;
+            menu1.value = distance;
         } else if (click == 1) {
             if (transSettings == 0 && backTrans + m >= 0 && backTrans + m <= 255) {
-                backTrans = backTrans + m;
-                menu2.innerText =
-                    "Setting: BACK" + "\nTransparency: " + nf(backTrans, 0, 0) + "/255";
-            } else if (
-                transSettings == 1 &&
-                lineTrans + m >= 0 &&
-                lineTrans + m <= 255
-            ) {
-                lineTrans = lineTrans + m;
-                menu2.innerText =
-                    "Setting: LINE" + "\nTransparency: " + nf(lineTrans, 0, 0) + "/255";
-            } else if (
-                transSettings == 2 &&
-                fillTrans + m >= 0 &&
-                fillTrans + m <= 255
-            ) {
-                fillTrans = fillTrans + m;
-                menu2.innerText =
-                    "Setting: FILL" + "\nTransparency: " + nf(fillTrans, 0, 0) + "/255";
+                backTrans = int(backTrans) + m;
+                menu2.value = backTrans;
+            } else if (transSettings == 1 && lineTrans + m >= 0 && lineTrans + m <= 255) {
+                lineTrans = int(lineTrans) + m;
+                menu2.value = lineTrans;
+            } else if (transSettings == 2 && fillTrans + m >= 0 && fillTrans + m <= 255) {
+                fillTrans = int(fillTrans) + m;
+                menu2.value = fillTrans;
             }
         } else if (click == 2 && radi + m >= 0 && radi + m <= 360) {
-            radi = radi + m;
-            menu3.innerText = "Radians: " + nf(radi, 0, 0) + "/360";
+            radi = int(radi) + m;
+            menu3.value = radi;
         } else if (click == 5 && pointSpacing + m >= 1 && pointSpacing + m <= 10) {
             if (lineSettings == 1) {
                 menu4.innerText = "Lines: OFF";
@@ -158,25 +157,25 @@ class keyboard {
                     nf(pointSpacing - 1, 0, 0) +
                     "/9";
             }
-        } else if (click == 3 && polar + m >= 0 && polar + m <= 3) {
-            polar = polar + m;
-            menu5.innerText = "Polarity: " + nf(polar, 0, 0) + "/3";
-        } else if (click == 4 && mode + m >= 1 && mode + m <= 8) {
-            mode = mode + m;
-            menu6.innerText = "Mode: " + nf(mode - 1, 0, 0) + "/7";
+        } else if (click == 3 && polar + m >= 0) {
+            polar = int(polar) + m;
+            menu5.value = polar;
+        } else if (click == 4 && mode + m >= 0 && mode + m <= 7) {
+            mode = int(mode) + m;
+            menu6.value = mode;
         } else if (click == 6 && amount + m >= 0 && amount + m <= 500) {
-            amount = amount + m;
-            menu7.innerText = "Amount: " + nf(amount, 0, 0) + "/500";
+            amount = int(amount) + m;
+            menu7.value = amount;
         } else if (click == 7) {
-            twist = twist + m;
-            menu8.innerText = "Twist: " + nf(twist, 0, 0);
+            twist = int(twist) + m;
+            menu8.value = twist;
         } else if (click == 8) {
-            menu9.innerText = "BlendMode: " + blenders[blend];
+            blend = int(blend) + m;
+            menu9.value = str(blend);
         } else if (click == 9 && colour + m >= 0 && colour + m <= 5) {
             colour = colour + m;
             menu10.innerText = "Colour: " + nf(colour, 0, 0);
         } else if (click == 10) {
-            //HEREEEEEEE
             whaaa = whaaa + m;
             if (yeet == 1000 * PI) {
                 menu11.innerText = "Beans: PI" + "\nwhaaa: " + nf(whaaa, 0, 0);

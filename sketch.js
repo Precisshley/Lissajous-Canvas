@@ -5,7 +5,16 @@
 //convert particles to classes <--done (working out the kinks):
 // - fix speed increase (expanding universe biz) might not be using "speed" variable since class conversion (maybe delete particles that have increased too much and create new ones)
 //find a way to make code more efficient
+//change "mode" in menu to names instead of numbers
+//same with "colour"
+//flip "amount" values
 
+//test controller on different devices
+//add spacebar O
+//instructions
+//better option names
+//test on mobile
+//screenshot and reset without controller
 
 // function changeTimer() {
 //             t = t++;
@@ -172,35 +181,35 @@ class Particle {
     let x;
     let y;
 
-    if (mode == 1) {
+    if (mode == 0) {
       x = start * Math.cos(starty)
       y = start * Math.sin(startw)
 
-    } else if (mode == 2) {
+    } else if (mode == 1) {
       x = start * Math.cos(starty)
       y = start * Math.tan(startw)
 
-    } else if (mode == 3) {
+    } else if (mode == 2) {
       x = start * Math.tan(starty)
       y = start * Math.tan(startw)
 
-    } else if (mode == 4) {
+    } else if (mode == 3) {
       x = start * Math.cos(starty)
       y = start * Math.atan(startw)
 
-    } else if (mode == 5) {
+    } else if (mode == 4) {
       x = start * (1 / Math.cos(starty))
       y = start * Math.sin(startw)
 
-    } else if (mode == 6) {
+    } else if (mode == 5) {
       x = start * (1 / Math.cos(starty))
       y = start * (1 / Math.sin(startw))
 
-    } else if (mode == 7) {
+    } else if (mode == 6) {
       x = start * (1 / Math.cos(starty))
       y = start * (1 / Math.tan(startw))
 
-    } else if (mode == 8) {
+    } else if (mode == 7) {
       x = start * (1 / Math.cos(starty))
       y = start * (1 / Math.atan(startw))
     }

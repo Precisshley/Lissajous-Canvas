@@ -1,7 +1,7 @@
 //TODO:
 //add more colours
 //add preset codes
-//add yeet component of beans(whaaa)
+//add lissaX component of beans(lissaY)
 //convert particles to classes <--done (working out the kinks):
 // - fix speed increase (expanding universe biz) might not be using "speed" variable since class conversion (maybe delete particles that have increased too much and create new ones)
 //find a way to make code more efficient
@@ -10,11 +10,13 @@
 //flip "amount" values
 
 //test controller on different devices
-//add spacebar O
+//"O" for mobile
 //instructions
 //better option names
 //test on mobile
 //screenshot and reset without controller
+//add lissaX to menu
+//fix min max for line spacing, connectoons, and amount
 
 // function changeTimer() {
 //             t = t++;
@@ -38,7 +40,7 @@ function setup() {
   } else {
     createCanvas(windowWidth, windowWidth);
   }
-  whaaa = 1;
+  lissaY = 1;
 }
 
 function windowResized() {
@@ -50,6 +52,8 @@ function windowResized() {
 }
 
 function draw() {
+  lissaX = initialX * multiplierX
+  lissaY = initialY * multiplierY
   fill(255);
   blendMode(BLEND);
 
@@ -150,15 +154,15 @@ class Particle {
       // stroke(line1x + 150, line2x + 150, line3x + 150, lineTrans);
       // fill(line1y + 150, line2y + 150, line3y + 150, fillTrans);
 
-      //fix lineSettings
+      //fix lineCount
       //fix amount
       //fix polar limits
       //fix simplecalc
       //fix colors
       beginShape();
       vertex.apply(null, this.getPoints());
-      if (this.i + lineSettings + 1 <= particles.length){ //maybe working
-        for (var j = 0; j < lineSettings + 1; j++) {
+      if (this.i + lineCount + 1 <= particles.length){ //maybe working
+        for (var j = 0; j < lineCount + 1; j++) {
           vertex.apply(null, particles[this.i + j].getPoints());
         }
       }
@@ -175,8 +179,8 @@ class Particle {
     let calc = frameCount + (this.i * pointSpacing)
 
     let start = calc / distance;
-    let starty = calc / yeet * twist;
-    let startw = calc / whaaa * twist;
+    let starty = calc / lissaX * twist;
+    let startw = calc / lissaY * twist;
 
     let x;
     let y;

@@ -36,11 +36,19 @@ class keyboard {
             let menu12 = document.getElementById("TransparencyV");
             menu12.value = str(transSettings);
         } else if (click == 5) {
-            if (lineSettings == 2) {
+            if (lineSettings == 1) {
                 lineSettings = 0;
             } else {
                 lineSettings++;
             }
+            let menu3 = document.getElementById("LinesNV");
+            if (lineSettings == 0) {
+                menu3.value = lineCount;
+            } else if (lineSettings == 1) {
+                menu3.value = pointSpacing;
+            }
+            let menu12 = document.getElementById("LinesV");
+            menu12.value = str(lineSettings);
         } else if (click == 8) {
             if (blend == 9) {
                 blend = 0;
@@ -48,11 +56,15 @@ class keyboard {
                 blend++;
             }
         } else if (click == 10) {
-            if (yeet == 1000 * PI) {
-                yeet = 1;
-            } else if (yeet == 1) {
-                yeet = 1000 * PI;
+            if (multiX == 0) {
+                multiX = 1
+                multiplierX = 1;
+            } else if (multiX == 1) {
+                multiX = 0
+                multiplierX = 1000 * PI;
             }
+            let menu13 = document.getElementById("MultiplierV");
+            menu13.value = str(multiX);
         }
         this.buttonUpdate(0);
     }
@@ -72,7 +84,7 @@ class keyboard {
         mode = 0;
         amount = 10;
         pointSpacing = 10;
-        // lineSettings = 1;
+        // lineCount = 1;
         // trails = 0;
         twist = 180;
         blend = 0;
@@ -98,7 +110,7 @@ class keyboard {
         mode = 6;
         amount = 1;
         pointSpacing = 10;
-        // lineSettings = 1;
+        // lineCount = 1;
         // trails = 0;
         twist = 1;
         blend = 1;
@@ -112,18 +124,19 @@ class keyboard {
         this.mybutton(click);
     }
     buttonUpdate(ha) {
+        //move to initialValues
         let m = ha;
         let menu1 = document.getElementById("DistanceV");
         let menu2 = document.getElementById("TransparencyNV");
         let menu3 = document.getElementById("RadiansV");
-        let menu4 = document.getElementById("Lines");
+        let menu4 = document.getElementById("LinesNV");
         let menu5 = document.getElementById("PolarityV");
         let menu6 = document.getElementById("ModeV");
         let menu7 = document.getElementById("AmountV");
         let menu8 = document.getElementById("TwistV");
         let menu9 = document.getElementById("BlendModeV");
         let menu10 = document.getElementById("Colour");
-        let menu11 = document.getElementById("Beans");
+        let menu11 = document.getElementById("lissaYV");
     
         if (click == 0) {
             distance = int(distance) + m;
@@ -142,20 +155,13 @@ class keyboard {
         } else if (click == 2 && radi + m >= 0 && radi + m <= 360) {
             radi = int(radi) + m;
             menu3.value = radi;
-        } else if (click == 5 && pointSpacing + m >= 1 && pointSpacing + m <= 10) {
-            if (lineSettings == 1) {
-                menu4.innerText = "Lines: OFF";
-            } else if (lineSettings == 0) {
-                pointSpacing = pointSpacing + m;
-                menu4.innerText =
-                    "Lines: LINES" + "\nLine Spacing: " + nf(pointSpacing - 1, 0, 0) + "/9";
-            } else {
-                pointSpacing = pointSpacing + m;
-                menu4.innerText =
-                    "Lines: TRIANGLES" +
-                    "\nLine Spacing: " +
-                    nf(pointSpacing - 1, 0, 0) +
-                    "/9";
+        } else if (click == 5) {
+            if (lineSettings == 0 && lineCount + m >= 0 && lineCount + m <= 500) {
+                lineCount = int(lineCount) + m;
+                menu4.value = lineCount;
+            } else if (lineSettings == 1 && pointSpacing + m >= 0 && pointSpacing + m <= 500) {
+                pointSpacing = int(pointSpacing) + m;
+                menu4.value = pointSpacing;
             }
         } else if (click == 3 && polar + m >= 0) {
             polar = int(polar) + m;
@@ -176,12 +182,13 @@ class keyboard {
             colour = colour + m;
             menu10.innerText = "Colour: " + nf(colour, 0, 0);
         } else if (click == 10) {
-            whaaa = whaaa + m;
-            if (yeet == 1000 * PI) {
-                menu11.innerText = "Beans: PI" + "\nwhaaa: " + nf(whaaa, 0, 0);
-            } else if (yeet == 1) {
-                menu11.innerText = "Beans: Normal" + "\nwhaaa: " + nf(whaaa, 0, 0);
-            }
+            initialY = int(initialY) + m;
+            menu11.value = initialY;
+            // if (lissaX == 1000 * PI) {
+            //     menu11.innerText = "Beans: PI" + "\lissaY: " + nf(lissaY, 0, 0);
+            // } else if (lissaX == 1) {
+            //     menu11.innerText = "Beans: Normal" + "\lissaY: " + nf(lissaY, 0, 0);
+            // }
         }
     }
 

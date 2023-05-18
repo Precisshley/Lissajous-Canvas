@@ -66,3 +66,62 @@ function updateValue9(e) {
     fillTrans = int(e.target.value);
   }
 }
+
+const value10 = document.getElementById("MultiplierV");
+value10.addEventListener('input', updateValue10);
+function updateValue10(e) {
+  multiX = int(e.target.value);
+  if (multiX == 0) {
+    multiplierX = 1;
+  } else if (multiX == 1) {
+    multiplierX = 1000 * PI;
+  }
+}
+
+const value11 = document.getElementById("lissaYV");
+value11.addEventListener('input', updateValue11);
+function updateValue11(e) {
+  initialY = int(e.target.value);
+}
+
+const value12 = document.getElementById("LinesV");
+value12.addEventListener('input', updateValue12);
+function updateValue12(e) {
+  lineSettings = int(e.target.value);
+  let menu3 = document.getElementById("LinesNV");
+  if (lineSettings == 0) {
+      menu3.value = lineCount;
+  } else {
+      menu3.value = pointSpacing;
+  }
+}
+
+const value13 = document.getElementById("LinesNV");
+value13.addEventListener('input', updateValue13);
+function updateValue13(e) {
+  if (lineSettings == 0) {
+    lineCount = int(e.target.value);
+  } else {
+    pointSpacing = int(e.target.value);
+  }
+}
+
+//"O" spacebar
+document.addEventListener('keydown', event => {
+  if (event.code === 'Space') {
+    trails = 1;
+  }
+})
+
+document.addEventListener('keyup', event => {
+  if (event.code === 'Space') {
+    trails = 0;
+  }
+})
+
+document.addEventListener('keyup', event => {
+  if (event.code === 'S') {
+    console.log("fock")
+    eyes.screenshot()
+  }
+})

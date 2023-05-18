@@ -37,7 +37,13 @@
 
     <button id="Mode" onclick="mybutton(4)">Mode: <input id="ModeV" type="number" min="0" max="7" value="1"> / 7</button>
 
-    <button id="Lines" onclick="mybutton(5)">Lines: </button>
+    <button id="Lines" onclick="mybutton(5)">
+    Lines: <br><select id="LinesV">
+      <option value="0">Connections</option>
+      <option value="1">Spacing</option>
+      </select><br>
+      <input id="LinesNV" type="number" value="1" min="0" max="500"> / 500
+      </button>
 
     <button id="Amount" onclick="mybutton(6)">Amount: <input id="AmountV" type="number" min="0" max="500" value="1"> / 500</button>
 
@@ -60,7 +66,14 @@
 
     <button id="Colour" onclick="mybutton(9)">Colour: </button>
 
-    <button id="Beans" onclick="mybutton(10)">Beans: </button>
+    <button id="Beans" onclick="mybutton(10)">
+    Mulitplier: <br><select id="MultiplierV">
+      <option value="0">None</option>
+      <option value="1">Pi</option>
+      </select><br>
+      <input id="lissaYV" type="number" value="1">
+    </button>
+
     </div>
     <script src="eventlisteners.js"></script>
   </body>

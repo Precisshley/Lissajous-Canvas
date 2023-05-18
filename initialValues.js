@@ -1,6 +1,15 @@
 //you know what this means (probably)//
-let whaaa = 1;
-let yeet = 1;
+let lissaY = 1;
+let lissaX = 1;
+
+let multiX = 0;
+let multiY = 0;
+
+let initialX = 1;
+let initialY = 1;
+
+let multiplierX = 1;
+let multiplierY = 1;
 
 let distance = 20; //distance (obviously!)//
 let mode = 0; //graph render setting//
@@ -17,7 +26,8 @@ let lineTrans = 255;
 let fillTrans = 50;
 
 //point, line, triangle settings//
-let lineSettings = 1;
+let lineSettings = 0;
+let lineCount = 1;
 let pointSpacing = 10;
 
 let bpress = 0; //prints to console if button is pressed or not//

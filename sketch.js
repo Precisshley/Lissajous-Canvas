@@ -1,23 +1,3 @@
-//TODO:
-//add more colours
-//add preset codes
-//add lissaX component of beans(lissaY)
-//convert particles to classes <--done (working out the kinks):
-// - fix speed increase (expanding universe biz) might not be using "speed" variable since class conversion (maybe delete particles that have increased too much and create new ones)
-//find a way to make code more efficient
-//change "mode" in menu to names instead of numbers
-//same with "colour"
-//flip "amount" values
-
-//test controller on different devices
-//"O" for mobile
-//instructions
-//better option names
-//test on mobile
-//screenshot and reset without controller
-//add lissaX to menu
-//fix min max for line spacing, connectoons, and amount
-
 // function changeTimer() {
 //             t = t++;
 //         }
@@ -140,7 +120,7 @@ class Particle {
     push();
     // frames = frameCount + (this.i * pointSpacing);
     //control interval spacing (added to menu)
-    if (this.i % amount == 0) {
+    if (this.i <= amount) {
       translate(width / 2, height / 2);
       rotate(radians(this.i * radi));
 

@@ -97,7 +97,7 @@ document.addEventListener('keyup', event => {
 
 document.addEventListener('keyup', event => { //doesnt work right now
   if (event.code === 'S') {
-    console.log("fock")
+    console.log("nope")
     eyes.screenshot()
   }
 })

@@ -82,7 +82,7 @@ class keyboard {
         radi = 0;
         polar = 0;
         mode = 0;
-        amount = 10;
+        amount = 490;
         pointSpacing = 10;
         // lineCount = 1;
         // trails = 0;
@@ -108,7 +108,7 @@ class keyboard {
         radi = 3;
         polar = 1;
         mode = 6;
-        amount = 1;
+        amount = 500;
         pointSpacing = 10;
         // lineCount = 1;
         // trails = 0;

@@ -1,4 +1,3 @@
-//you know what this means (probably)//
 let lissaY = 1;
 let lissaX = 1;
 
@@ -6,16 +5,16 @@ let multiX = 0;
 let multiY = 0;
 
 let initialX = 1;
-let initialY = 1;
+let initialY = 3;
 
 let multiplierX = 1;
 let multiplierY = 1;
 
-let distance = 20; //distance (obviously!)//
+let distance = 20; 
 let mode = 0; //graph render setting//
 let polar = 0; //polarity//
 let radi = 0; //graph rotation//
-let amount = 10; //density of data present on screen//
+let amount = 490; //density of data present on screen//
 let click = 0; //menu position//
 let blend = 0; //blendmode setting//
 
@@ -27,15 +26,15 @@ let fillTrans = 50;
 
 //point, line, triangle settings//
 let lineSettings = 0;
-let lineCount = 1;
+let lineCount = 0;
 let pointSpacing = 10;
 
 let bpress = 0; //prints to console if button is pressed or not//
 
 let trails = 0; //whether "o" (Y on controller) is pressed or not//
-let twist = 180; //the direction/speed the graph is generated (I guess?)//
+let twist = 180; //the direction/speed the graph is generated//
 
-let colour = 0;
+let colour = 1;
 
 let speed = 0.05;
 

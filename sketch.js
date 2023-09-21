@@ -1,12 +1,3 @@
-//TODO:
-//add more colours
-//add preset codes
-//add yeet component of beans(whaaa)
-//convert particles to classes <--done (working out the kinks):
-// - fix speed increase (expanding universe biz) might not be using "speed" variable since class conversion (maybe delete particles that have increased too much and create new ones)
-//find a way to make code more efficient
-
-
 // function changeTimer() {
 //             t = t++;
 //         }
@@ -29,7 +20,7 @@ function setup() {
   } else {
     createCanvas(windowWidth, windowWidth);
   }
-  whaaa = 1;
+  lissaY = 1;
 }
 
 function windowResized() {
@@ -41,6 +32,8 @@ function windowResized() {
 }
 
 function draw() {
+  lissaX = initialX * multiplierX
+  lissaY = initialY * multiplierY
   fill(255);
   blendMode(BLEND);
 
@@ -127,7 +120,7 @@ class Particle {
     push();
     // frames = frameCount + (this.i * pointSpacing);
     //control interval spacing (added to menu)
-    if (this.i % amount == 0) {
+    if (this.i <= amount) {
       translate(width / 2, height / 2);
       rotate(radians(this.i * radi));
 
@@ -141,15 +134,15 @@ class Particle {
       // stroke(line1x + 150, line2x + 150, line3x + 150, lineTrans);
       // fill(line1y + 150, line2y + 150, line3y + 150, fillTrans);
 
-      //fix lineSettings
+      //fix lineCount
       //fix amount
       //fix polar limits
       //fix simplecalc
       //fix colors
       beginShape();
       vertex.apply(null, this.getPoints());
-      if (this.i + lineSettings + 1 <= particles.length){ //maybe working
-        for (var j = 0; j < lineSettings + 1; j++) {
+      if (this.i + lineCount + 1 <= particles.length){ //maybe working
+        for (var j = 0; j < lineCount + 1; j++) {
           vertex.apply(null, particles[this.i + j].getPoints());
         }
       }
@@ -166,41 +159,41 @@ class Particle {
     let calc = frameCount + (this.i * pointSpacing)
 
     let start = calc / distance;
-    let starty = calc / yeet * twist;
-    let startw = calc / whaaa * twist;
+    let starty = calc / lissaX * twist;
+    let startw = calc / lissaY * twist;
 
     let x;
     let y;
 
-    if (mode == 1) {
+    if (mode == 0) {
       x = start * Math.cos(starty)
       y = start * Math.sin(startw)
 
-    } else if (mode == 2) {
+    } else if (mode == 1) {
       x = start * Math.cos(starty)
       y = start * Math.tan(startw)
 
-    } else if (mode == 3) {
+    } else if (mode == 2) {
       x = start * Math.tan(starty)
       y = start * Math.tan(startw)
 
-    } else if (mode == 4) {
+    } else if (mode == 3) {
       x = start * Math.cos(starty)
       y = start * Math.atan(startw)
 
-    } else if (mode == 5) {
+    } else if (mode == 4) {
       x = start * (1 / Math.cos(starty))
       y = start * Math.sin(startw)
 
-    } else if (mode == 6) {
+    } else if (mode == 5) {
       x = start * (1 / Math.cos(starty))
       y = start * (1 / Math.sin(startw))
 
-    } else if (mode == 7) {
+    } else if (mode == 6) {
       x = start * (1 / Math.cos(starty))
       y = start * (1 / Math.tan(startw))
 
-    } else if (mode == 8) {
+    } else if (mode == 7) {
       x = start * (1 / Math.cos(starty))
       y = start * (1 / Math.atan(startw))
     }

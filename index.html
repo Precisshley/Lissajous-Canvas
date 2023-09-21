@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="style.css" />
     <meta charset="utf-8" />
@@ -20,17 +19,61 @@
 
     </div>
     <div class = "right">
-    <button id="Distance" onclick="mybutton(0)">Distance:</button>
-    <button id="Transparency" onclick="mybutton(1)">Transparency:</button>
-    <button id="Radians" onclick="mybutton(2)">Radians:</button>
-    <button id="Polarity" onclick="mybutton(3)">Polarity:</button>
-    <button id="Mode" onclick="mybutton(4)">Mode:</button>
-    <button id="Lines" onclick="mybutton(5)">Lines:</button>
-    <button id="Amount" onclick="mybutton(6)">Amount:</button>
-    <button id="Twist" onclick="mybutton(7)">Twist:</button>
-    <button id="BlendMode" onclick="mybutton(8)">BlendMode:</button>
-    <button id="Colour" onclick="mybutton(9)">Colour:</button>
-    <button id="Beans" onclick="mybutton(10)">Beans:</button>
+    <button id="Distance" onclick="mybutton(0)">Distance: <input id="DistanceV" type="number" value="1"></button>
+
+    <button id="Transparency" onclick="mybutton(1)">
+    Transparency:<br><select id="TransparencyV">
+      <option value="0">Background</option>
+      <option value="1">Lines</option>
+      <option value="2">Fill</option>
+      </select><br>
+      <input id="TransparencyNV" type="number" value="1" min="0" max="255"> / 255
+    </button>
+
+    <button id="Radians" onclick="mybutton(2)">Radians: <input id="RadiansV" type="number" min="0" max="360" value="1"> / 360</button>
+
+    <button id="Polarity" onclick="mybutton(3)">Polarity: <input id="PolarityV" type="number" min="0" value="1"></button>
+
+    <button id="Mode" onclick="mybutton(4)">Mode: <input id="ModeV" type="number" min="0" max="7" value="1"> / 7</button>
+
+    <button id="Lines" onclick="mybutton(5)">
+    Lines: <br><select id="LinesV">
+      <option value="0">Connections</option>
+      <option value="1">Spacing</option>
+      </select><br>
+      <input id="LinesNV" type="number" value="1" min="0" max="500"> / 500
+      </button>
+
+    <button id="Amount" onclick="mybutton(6)">Amount: <input id="AmountV" type="number" min="0" max="500" value="1"> / 500</button>
+
+    <button id="Twist" onclick="mybutton(7)">Twist: <input id="TwistV" type="number" value="1"></button>
+
+    <button id="BlendMode" onclick="mybutton(8)">
+    BlendMode: <select id="BlendModeV">
+      <option value="0">Default</option>
+      <option value="1">Screen</option>
+      <option value="2">Add</option>
+      <option value="3">Difference</option>
+      <option value="4">Exclusion</option>
+      <option value="5">Lightest</option>
+      <option value="6">Overlay</option>
+      <option value="7">Hard Light</option>
+      <option value="8">Soft Light</option>
+      <option value="9">Dodge</option>
+      </select>
+    </button>
+
+    <button id="Colour" onclick="mybutton(9)">Colour: </button>
+
+    <button id="Beans" onclick="mybutton(10)">
+    Mulitplier: <br><select id="MultiplierV">
+      <option value="0">None</option>
+      <option value="1">Pi</option>
+      </select><br>
+      <input id="lissaYV" type="number" value="1">
+    </button>
+
     </div>
+    <script src="eventlisteners.js"></script>
   </body>
 </html>

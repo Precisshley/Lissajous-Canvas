@@ -25,25 +25,6 @@ window.addEventListener(
 );
 
 
-// window.addEventListener(
-//   "gc.button.press",
-//   function (event) {
-//     var button = event.detail;
-//     console.log(button);
-//   },
-//   false
-// );
-
-// window.addEventListener(
-//   "gc.analog.start",
-//   function (event) {
-//     var stick = event.detail;
-//     console.log(stick);
-//   },
-//   false
-// );
-
-
 function timeIt() {
     if (Math.abs(analogStickMap) > Math.abs(analogsticky)) {
         if (Math.sign(analogStickMap) == 1) {
@@ -115,58 +96,6 @@ window.addEventListener(
 );
 
 
-
-// function reset(types) {
-//     let clickSave = click;
-//     if (types == 0) {
-//         distance = 20;
-//         transSettings = 0;
-//         backTrans = 20;
-//         lineTrans = 255;
-//         fillTrans = 50;
-//         radi = 0;
-//         polar = 0;
-//         mode = 1;
-//         amount = 10;
-//         pointSpacing = 10;
-//         // lineSettings = 1;
-//         // trails = 0;
-//         twist = 180;
-//         blend = 0;
-//         // mybutton(0);
-//         for (let i = 0; i < 9; i++) {
-//             click = i;
-//             buttonUpdate(0);
-//         }
-//     } else if (types == 1) {
-//         mybutton(0);
-//         distance = 100;
-//         transSettings = 0;
-//         backTrans = 20;
-//         lineTrans = 255;
-//         fillTrans = 50;
-//         radi = 3;
-//         polar = 1;
-//         mode = 6;
-//         amount = 1;
-//         pointSpacing = 10;
-//         // lineSettings = 1;
-//         // trails = 0;
-//         twist = 1;
-//         blend = 1;
-//         // mybutton(0);
-//         for (let i = 0; i < 10; i++) {
-//             click = i;
-//             buttonUpdate(0);
-//         }
-//     }
-//     click = clickSave;
-//     buttonUpdate(0);
-//     mybutton(click);
-// }
-
-
-
 window.addEventListener(
     "gc.button.press",
     function (event) {
@@ -230,15 +159,23 @@ window.addEventListener(    //resets when buttons are released
     false
 );
 
-function mybutton(boop) {   //changes click when mouse presses buttons
-    click = boop;
-    document.getElementById(elements[boop]).style.color = "#FFFFFF";
-    for (let i = 0; i < elements.length; i++) {
-        if (i != boop) {
-            document.getElementById(elements[i]).style.color = "#8B8B8B";
-        }
-    }
-}
+// window.addEventListener(
+//   "gc.button.press",
+//   function (event) {
+//     var button = event.detail;
+//     console.log(button);
+//   },
+//   false
+// );
+
+// window.addEventListener(
+//   "gc.analog.start",
+//   function (event) {
+//     var stick = event.detail;
+//     console.log(stick);
+//   },
+//   false
+// );
 
 //when d-pad button is held (we dont need this rn)
 // window.addEventListener( 

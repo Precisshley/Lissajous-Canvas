@@ -17,3 +17,5 @@
 //fix min max for line spacing, connections, and amount(amount might be fixed)
 
 //fix mouse scroll direction on inputs (it is bad design)
+
+//single lines are connected in one big loop (need open vector shape?)

@@ -11,4 +11,6 @@ There are some compatibility issues with p5js for some functions, but running on
 
 - You can use the scrollwheel in the menu for changing values
 - Spacebar: Stops the canvas from erasing
+- 'S' key for screenshots
+- 'R' key for reset
 

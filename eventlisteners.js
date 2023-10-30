@@ -84,20 +84,25 @@ document.getElementById("LinesNV").addEventListener('input', event => {
 
 //"O" spacebar
 document.addEventListener('keydown', event => {
-  if (event.code === 'Space') {
+  if (event.code == 'Space') {
     trails = 1;
   }
 })
 
 document.addEventListener('keyup', event => {
-  if (event.code === 'Space') {
+  if (event.code == 'Space') {
     trails = 0;
   }
 })
 
-document.addEventListener('keyup', event => { //doesnt work right now
-  if (event.code === 'S') {
-    console.log("nope")
-    eyes.screenshot()
+document.addEventListener('keyup', event => {
+  if (event.code == 'KeyS') {
+    eyes.screenshot();
+  }
+})
+
+document.addEventListener('keyup', event => {
+  if (event.code == 'KeyR') {
+    eyes.reset();
   }
 })

@@ -12,7 +12,7 @@
 //instructions
 //better option names
 //test on mobile
-//screenshot and reset without controller
+//R reset on keyboard doesnt account for pi reset on controller
 //add lissaX to menu
 //fix min max for line spacing, connections, and amount(amount might be fixed)
 

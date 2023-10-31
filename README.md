@@ -1,9 +1,10 @@
-# WILTC5G
+# Lissajous Canvas
 
 This is a canvas for playing with lissajous curves. 
 
 I've had this project hanging around for a number of years yet I keep coming back to it just to tinker with it. At some point I need to properly comment and format everything, but for now it is available to run on git pages. I will also get around to explaining what anything means in the menu. Until then, I recommend having fun blindly playing with the different options and see what you can make!
 
+https://precisshley.github.io/WILTC5G/
 
 ## The Controls
 

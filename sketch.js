@@ -156,14 +156,8 @@ class Particle {
 
   getPoints() {
 
-    //speed of point expand
-    let calc = frameCount + (this.i * pointSpacing);
-    //let loops = 0;
-    //while (calc >= (amount * pointSpacing)){
-    //  loops++;
-    //  calc = frameCount + ((this.i-amount) * pointSpacing);
-    //}
-    //let calc = frameCount + (this.i);
+    //points move out based on framecount, resets when point reaches outer rim
+    let calc = ((frameCount + ((this.i) * pointSpacing)) % ((amount) * pointSpacing)) + startP;
 
     let start = calc / distance;
     let starty = calc / lissaX * twist;

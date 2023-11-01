@@ -17,6 +17,7 @@ let radi = 0; //graph rotation//
 let amount = 490; //density of data present on screen//
 let click = 0; //menu position//
 let blend = 0; //blendmode setting//
+let startP = 0; //starting point for all points//
 
 //transparency settings//
 let transSettings = 0;

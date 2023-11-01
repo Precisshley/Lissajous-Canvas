@@ -2,7 +2,7 @@
 //add preset codes
 //add lissaX component of beans(lissaY)
 //convert particles to classes <--done (working out the kinks):
-// - fix speed increase (expanding) might not be using "speed" variable since class conversion (maybe delete particles that have increased too much and create new ones)
+//fixed expanding particle issue, can now me changed with startP - add to menu
 //find a way to make loop more efficient
 //change "mode" in menu to names instead of numbers
 //same with "colour"

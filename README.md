@@ -15,3 +15,12 @@ There are some compatibility issues with p5js for some functions, but running on
 - 'S' key for screenshots
 - 'R' key for reset
 
+## External Libraries
+
+### Controller.js
+- Provides controller functionality for non-gaming applications
+  
+MIT License (MIT)
+Copyright © 2016 Samir Zahran.
+
+[https://github.com/samiare/Controller.js]

@@ -12,7 +12,7 @@ function setup() {
     click = i;
     eyes.buttonUpdate(0);
   }
-  mybutton(0);
+  eyes.mybutton(0);
   blendMode(SCREEN);
 
   if (windowHeight < windowWidth) {
@@ -166,38 +166,9 @@ class Particle {
     let x;
     let y;
 
-    if (mode == 0) {
-      x = start * Math.cos(starty)
-      y = start * Math.sin(startw)
+      x = start * calculateTrig(starty, funcx)
+      y = start * calculateTrig(startw, funcy)
 
-    } else if (mode == 1) {
-      x = start * Math.cos(starty)
-      y = start * Math.tan(startw)
-
-    } else if (mode == 2) {
-      x = start * Math.tan(starty)
-      y = start * Math.tan(startw)
-
-    } else if (mode == 3) {
-      x = start * Math.cos(starty)
-      y = start * Math.atan(startw)
-
-    } else if (mode == 4) {
-      x = start * (1 / Math.cos(starty))
-      y = start * Math.sin(startw)
-
-    } else if (mode == 5) {
-      x = start * (1 / Math.cos(starty))
-      y = start * (1 / Math.sin(startw))
-
-    } else if (mode == 6) {
-      x = start * (1 / Math.cos(starty))
-      y = start * (1 / Math.tan(startw))
-
-    } else if (mode == 7) {
-      x = start * (1 / Math.cos(starty))
-      y = start * (1 / Math.atan(startw))
-    }
 
     return this.getPolar(x, y)
   }

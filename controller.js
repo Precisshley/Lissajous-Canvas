@@ -42,7 +42,7 @@ function timeIt() {
             eyes.mybutton(click);
         } else if (analogsticky == -1) {
             if (click == 0) {
-                click = 10;
+                click = 11;
             } else {
                 click--;
             }
@@ -125,7 +125,7 @@ window.addEventListener(
         } else if (event.detail.name == "DPAD_DOWN") {
             eyes.buttonUpdate(-1);
         } else if (event.detail.name == "DPAD_RIGHT") {
-            if (click == 10) {
+            if (click == 11) {
                 click = 0;
             } else {
                 click++;
@@ -134,7 +134,7 @@ window.addEventListener(
             eyes.mybutton(click);
         } else if (event.detail.name == "DPAD_LEFT") {
             if (click == 0) {
-                click = 10;
+                click = 11;
             } else {
                 click--;
             }

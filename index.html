@@ -34,9 +34,44 @@
 
     <button id="Polarity" onclick="mybutton(3)">Polarity: <input id="PolarityV" type="number" min="0" value="1"></button>
 
-    <button id="Mode" onclick="mybutton(4)">Mode: <input id="ModeV" type="number" min="0" max="7" value="1"> / 7</button>
+    <button id="xtrig" onclick="mybutton(4)">
+    X: <br><select id="xtrigV">
+      <option value="0">sin</option>
+      <option value="1">cos</option>
+      <option value="2">tan</option>
+      <option value="3">asin</option>
+      <option value="4">acos</option>
+      <option value="5">atan</option>
+      <option value="6">reciprocalSin</option>
+      <option value="7">reciprocalCos</option>
+      <option value="8">reciprocalTan</option>
+      <option value="9">reciprocalASin</option>
+      <option value="10">reciprocalACos</option>
+      <option value="11">reciprocalATan</option>
+      </select><br>
+      <input id="xNV" type="number" value="1">
+      </button>
 
-    <button id="Lines" onclick="mybutton(5)">
+    <button id="ytrig" onclick="mybutton(5)">
+    Y: <br><select id="ytrigV">
+      <option value="0">sin</option>
+      <option value="1">cos</option>
+      <option value="2">tan</option>
+      <option value="3">asin</option>
+      <option value="4">acos</option>
+      <option value="5">atan</option>
+      <option value="6">reciprocalSin</option>
+      <option value="7">reciprocalCos</option>
+      <option value="8">reciprocalTan</option>
+      <option value="9">reciprocalASin</option>
+      <option value="10">reciprocalACos</option>
+      <option value="11">reciprocalATan</option>
+      </select><br>
+      <input id="yNV" type="number" value="3">
+      </button>
+
+
+    <button id="Lines" onclick="mybutton(6)">
     Lines: <br><select id="LinesV">
       <option value="0">Connections</option>
       <option value="1">Spacing</option>
@@ -44,11 +79,11 @@
       <input id="LinesNV" type="number" value="1" min="0" max="500"> / 500
       </button>
 
-    <button id="Amount" onclick="mybutton(6)">Amount: <input id="AmountV" type="number" min="0" max="500" value="1"> / 500</button>
+    <button id="Amount" onclick="mybutton(7)">Amount: <input id="AmountV" type="number" min="0" max="500" value="1"> / 500</button>
 
-    <button id="Twist" onclick="mybutton(7)">Twist: <input id="TwistV" type="number" value="1"></button>
+    <button id="Twist" onclick="mybutton(8)">Twist: <input id="TwistV" type="number" value="1"></button>
 
-    <button id="BlendMode" onclick="mybutton(8)">
+    <button id="BlendMode" onclick="mybutton(9)">
     BlendMode: <select id="BlendModeV">
       <option value="0">Default</option>
       <option value="1">Screen</option>
@@ -63,14 +98,13 @@
       </select>
     </button>
 
-    <button id="Colour" onclick="mybutton(9)">Colour: </button>
+    <button id="Colour" onclick="mybutton(10)">Colour: </button>
 
-    <button id="Beans" onclick="mybutton(10)">
+    <button id="Beans" onclick="mybutton(11)">
     Mulitplier: <br><select id="MultiplierV">
       <option value="0">None</option>
       <option value="1">Pi</option>
-      </select><br>
-      <input id="lissaYV" type="number" value="1">
+      </select>
     </button>
 
     </div>

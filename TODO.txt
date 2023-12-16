@@ -1,11 +1,10 @@
 //add more colours
 //add preset codes
-//add lissaX component of beans(lissaY)
+//add PI adjustments to both x and y
 //convert particles to classes <--done (working out the kinks):
-//fixed expanding particle issue, can now me changed with startP - add to menu
+//fixed expanding particle issue, can now be changed with startP - add to menu
 //find a way to make loop more efficient
-//change "mode" in menu to names instead of numbers
-//same with "colour"
+//change "colour" in menu to names instead of numbers
 
 //test controller on different devices
 //"O" for mobile
@@ -13,7 +12,6 @@
 //better option names
 //test on mobile
 //R reset on keyboard doesnt account for pi reset on controller
-//add lissaX to menu
 //fix min max for line spacing, connections, and amount(amount might be fixed)
 
 //fix mouse scroll direction on inputs (it is bad design)

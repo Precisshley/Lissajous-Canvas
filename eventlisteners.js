@@ -1,32 +1,50 @@
-
+// updating distance number value (keyboard)
 document.getElementById("DistanceV").addEventListener('input', event => {
   distance = event.target.value;
 });
 
+// updating polar number value (keyboard)
 document.getElementById("PolarityV").addEventListener('input', event => {
   polar = event.target.value;
 });
 
+// updating twist number value (keyboard)
 document.getElementById("TwistV").addEventListener('input', event => {
   twist = event.target.value;
 });
 
+// updating radi number value (keyboard)
 document.getElementById("RadiansV").addEventListener('input', event => {
   radi = event.target.value;
 });
 
-document.getElementById("ModeV").addEventListener('input', event => {
-  mode = event.target.value;
+// updating xtrig number value (keyboard)
+document.getElementById("xtrigV").addEventListener('input', event => {
+  funcx = trigArray[int(event.target.value)];
+});
+document.getElementById("xNV").addEventListener('input', event => {
+  initialX = int(event.target.value);
 });
 
+// updating ytrig number value (keyboard)
+document.getElementById("ytrigV").addEventListener('input', event => {
+  funcy = trigArray[int(event.target.value)];
+});
+document.getElementById("yNV").addEventListener('input', event => {
+  initialY = int(event.target.value);
+});
+
+// updating amount number value (keyboard)
 document.getElementById("AmountV").addEventListener('input', event => {
   amount = event.target.value;
 });
 
+// updating blend setting (keyboard)
 document.getElementById("BlendModeV").addEventListener('input', event => {
   blend = int(event.target.value);
 });
 
+// updating transparency setting. Updates trans values to display(keyboard)
 document.getElementById("TransparencyV").addEventListener('input', event => {
   transSettings = int(event.target.value);
   let menu2 = document.getElementById("TransparencyNV");
@@ -39,6 +57,7 @@ document.getElementById("TransparencyV").addEventListener('input', event => {
   }
 });
 
+// updating back transparency, line transparency, and fill transparency value (keyboard)
 document.getElementById("TransparencyNV").addEventListener('input', event => {
   if (transSettings == 0) {
     backTrans = int(event.target.value);
@@ -49,6 +68,7 @@ document.getElementById("TransparencyNV").addEventListener('input', event => {
   }
 });
 
+// updating multiplier settings (keyboard)
 document.getElementById("MultiplierV").addEventListener('input', event => {
   multiX = int(event.target.value);
   if (multiX == 0) {
@@ -58,12 +78,12 @@ document.getElementById("MultiplierV").addEventListener('input', event => {
   }
 });
 
+// updating Y value (keyboard)
+// document.getElementById("lissaYV").addEventListener('input', event => {
+//   initialY = int(event.target.value);
+// });
 
-document.getElementById("lissaYV").addEventListener('input', event => {
-  initialY = int(event.target.value);
-});
-
-
+// updating line settings. Updates line values to display (keyboard)
 document.getElementById("LinesV").addEventListener('input', event => {
   lineSettings = int(event.target.value);
   let menu3 = document.getElementById("LinesNV");
@@ -74,6 +94,7 @@ document.getElementById("LinesV").addEventListener('input', event => {
   }
 });
 
+// updating line values (keyboard)
 document.getElementById("LinesNV").addEventListener('input', event => {
   if (lineSettings == 0) {
     lineCount = int(event.target.value);

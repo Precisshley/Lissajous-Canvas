@@ -2,7 +2,7 @@ class keyboard {
     constructor() {}
     screenshot() {
         save(
-            "WILTC5G-" + distance + "-" + radi + "-" + polar + "-" + amount + "-" + twist + ".png"
+            "WILTC5G-${distance}-${radi}-${polar}-${amount}-${twist}.png"
         );
     }
     o() {
@@ -10,11 +10,7 @@ class keyboard {
     }
     setting() {
         if (click == 1) {
-            if (transSettings == 2) {
-                transSettings = 0;
-            } else {
-                transSettings++;
-            }
+            transSettings = (transSettings === 2) ? 0 : transSettings + 1; // if == 2, set to 0, else ++
             if (transSettings == 0) {
                 document.getElementById("TransparencyNV").value = backTrans;
             } else if (transSettings == 1) {
@@ -24,11 +20,7 @@ class keyboard {
             }
             document.getElementById("TransparencyV").value = str(transSettings);
         } else if (click == 6) {
-            if (lineSettings == 1) {
-                lineSettings = 0;
-            } else {
-                lineSettings++;
-            }
+            lineSettings = (lineSettings === 1) ? 0 : lineSettings + 1; // if == 1, set to 0, else ++
             if (lineSettings == 0) {
                 document.getElementById("LinesNV").value = lineCount;
             } else if (lineSettings == 1) {
@@ -36,27 +28,15 @@ class keyboard {
             }
             document.getElementById("LinesV").value = str(lineSettings);
         } else if (click == 4) {
-            if (trigxNum == 11) { // number of cos/sin functions
-                trigxNum = 0;
-            } else {
-                trigxNum++;
-            }
+            trigxNum = (trigxNum === 11) ? 0 : trigxNum + 1;
             funcx = trigArray[trigxNum];
             document.getElementById("xtrigV").value = str(trigxNum);
         }else if (click == 5) {
-            if (trigyNum == 11) { // number of cos/sin functions
-                trigyNum = 0;
-            } else {
-                trigyNum++;
-            }
+            trigyNum = (trigyNum === 11) ? 0 : trigyNum + 1;
             funcy = trigArray[trigyNum];
             document.getElementById("ytrigV").value = str(trigyNum);
         } else if (click == 9) {
-            if (blend == 9) {
-                blend = 0;
-            } else {
-                blend++;
-            }
+            blend = (blend === 9) ? 0 : blend + 1;
         } else if (click == 11) {
             if (multiX == 0) {
                 multiX = 1
@@ -180,11 +160,11 @@ class keyboard {
     mybutton(boop) {   //changes click when mouse presses buttons
         click = boop;
         document.getElementById(elements[boop]).style.color = "#FFFFFF";
-        for (let i = 0; i < elements.length; i++) {
+        elements.forEach((element, i) => {
             if (i != boop) {
-                document.getElementById(elements[i]).style.color = "#8B8B8B";
+              document.getElementById(element).style.color = "#8B8B8B";
             }
-        }
+        });
     }
 }
 

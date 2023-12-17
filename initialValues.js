@@ -11,7 +11,6 @@ let multiplierX = 1;
 let multiplierY = 1;
 
 let distance = 20; 
-//let mode = 0; //graph render setting//
 let polar = 0; //polarity//
 let radi = 0; //graph rotation//
 let amount = 490; //density of data present on screen//
@@ -53,19 +52,6 @@ let analogsticky;
 
 let funcx = 'sin'; // Change this variable to switch between sin, cos, or other functions
 let funcy = 'sin';
-
-let blenders = [
-    "DEFAULT",
-    "SCREEN",
-    "ADD",
-    "DIFFERENCE",
-    "EXCLUSION",
-    "LIGHTEST",
-    "OVERLAY",
-    "HARD_LIGHT",
-    "SOFT_LIGHT",
-    "DODGE",
-  ];
   
   let elements = [
     "Distance",
@@ -118,16 +104,38 @@ let blenders = [
     if (trigFunctions[funcName]) {
       // Call the function using bracket notation
       return trigFunctions[funcName](value);
-    } else {
-      return 0;
     }
+    return 0;
   }
+
   function mybutton(boop) {   //changes click when mouse presses buttons
     click = boop;
     document.getElementById(elements[boop]).style.color = "#FFFFFF";
-    for (let i = 0; i < elements.length; i++) {
-        if (i != boop) {
-            document.getElementById(elements[i]).style.color = "#8B8B8B";
-        }
-    }
+    elements.forEach((element, i) => {
+      if (i != boop) {
+        document.getElementById(element).style.color = "#8B8B8B";
+      }
+    });
 }
+
+  const blendModes = [
+    () => blendMode(BLEND),
+    () => blendMode(SCREEN),
+    () => blendMode(ADD),
+    () => blendMode(DIFFERENCE),
+    () => blendMode(EXCLUSION),
+    () => blendMode(LIGHTEST),
+    () => blendMode(OVERLAY),
+    () => blendMode(HARD_LIGHT),
+    () => blendMode(SOFT_LIGHT),
+    () => blendMode(DODGE)
+  ];
+
+  function setBlendModeByIndex(index) {
+    const selectedBlendMode = blendModes[index];
+    if (selectedBlendMode) {
+      selectedBlendMode();
+    } else {
+      console.error("Invalid blend mode index");
+    }
+  }

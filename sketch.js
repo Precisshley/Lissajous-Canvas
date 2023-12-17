@@ -42,42 +42,18 @@ function draw() {
   // console.log("FPS: " + fps.toFixed(2), 10, height - 10);
 
   if (trails == 1) {
-    blendHelper()
+    setBlendModeByIndex(blend);
   } else {
     blendMode(BLEND);
+    
     fill(0, 0, 0, backTrans);
     rect(0, 0, width, height);
-    blendHelper()
+    setBlendModeByIndex(blend);
   }
 
-  for (var i = 0; i < particles.length; i++) {
-    particles[i].drawParticle();
-    //points based on clone count of self. Not values inside the array
-  }
-}
-
-function blendHelper(){
-  if (blend == 0) {
-    blendMode(BLEND);
-} else if (blend == 1) {
-    blendMode(SCREEN);
-} else if (blend == 2) {
-    blendMode(ADD);
-} else if (blend == 3) {
-    blendMode(DIFFERENCE);
-} else if (blend == 4) {
-    blendMode(EXCLUSION);
-} else if (blend == 5) {
-    blendMode(LIGHTEST);
-} else if (blend == 6) {
-    blendMode(OVERLAY);
-} else if (blend == 7) {
-    blendMode(HARD_LIGHT);
-} else if (blend == 8) {
-    blendMode(SOFT_LIGHT);
-} else if (blend == 9) {
-    blendMode(DODGE);
-}
+  particles.forEach((particle) => {
+    particle.drawParticle();
+  });
 }
 
 class Particle {
@@ -94,23 +70,23 @@ class Particle {
       stroke(255, lineTrans);
     } else if (colour == 2) {
       stroke(
-        map(i, 0, particles.length, 0, 255),
-        map(i, 0, particles.length, 0, 255),
-        map(i, 0, particles.length, 0, 255),
+        map(this.i, 0, particles.length, 0, 255),
+        map(this.i, 0, particles.length, 0, 255),
+        map(this.i, 0, particles.length, 0, 255),
         lineTrans
       );
     } else if (colour == 3) {
       stroke(
-        map(i, 0, particles.length, 255, 0),
-        map(i, 0, particles.length, 255, 0),
-        map(i, 0, particles.length, 255, 0),
+        map(this.i, 0, particles.length, 255, 0),
+        map(this.i, 0, particles.length, 255, 0),
+        map(this.i, 0, particles.length, 255, 0),
         lineTrans
       );
     } else if (colour == 4) {
       stroke(
-        map(i, 0, particles.length, 100, 0),
-        map(i, 0, particles.length, 0, 100),
-        map(i, 0, particles.length, 0, 100),
+        map(this.i, 0, particles.length, 100, 0),
+        map(this.i, 0, particles.length, 0, 100),
+        map(this.i, 0, particles.length, 0, 100),
         lineTrans
       );
     }

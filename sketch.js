@@ -117,6 +117,7 @@ class Particle {
       //fix colors
       beginShape();
       vertex.apply(null, this.getPoints());
+      // ellipse(...this.getPoints(),mouseY,mouseY); // testing circles
       if (this.i + lineCount + 1 <= particles.length){ //maybe working
         for (var j = 0; j < lineCount + 1; j++) {
           vertex.apply(null, particles[this.i + j].getPoints());

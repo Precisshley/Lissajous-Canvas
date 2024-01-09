@@ -17,3 +17,7 @@
 //fix mouse scroll direction on inputs (it is bad design)
 
 //single lines are connected in one big loop (need open vector shape?)
+
+//consider ellipse, rect, etc shape setting as opposed to points. Could switch between settings in the same way as cos sin tan solution. Would need settings for shape angle, and size.
+//consider sliders rather input boxes.
+//look into switching to React for components, makes button additions in html easier to implement.

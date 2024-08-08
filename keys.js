@@ -2,7 +2,7 @@ class keyboard {
     constructor() {}
     screenshot() {
         save(
-            "WILTC5G-${distance}-${radi}-${polar}-${amount}-${twist}.png"
+            `WILTC5G_${distance}_${polar}_${radi}_${amount}_${twist}_${lineSettings}_${twist}_${lineCount}_${pointSpacing}_${funcx}_${funcy}_${lissaX}_${lissaY}.png`
         );
     }
     o() {

@@ -19,10 +19,10 @@ body:hover{
 
 .right {
   height: 100vmin;
-width: calc(100% - 100vmin);
-    display: flex;
+  width: calc(100% - 100vmin);
+  display: flex;
   flex-wrap: wrap;
-  text-align: center;
+  text-align: left;
   background: #000000;
   background: -moz-linear-gradient(left, #000000 0%, #767676 100%);
   background: -webkit-linear-gradient(left, #000000 0%, #767676 100%);
@@ -41,6 +41,10 @@ width: 100vmin;
 }
 
 button {
+  text-align: left;
+  font-weight: bold;
+  font-size: 15px;
+
   flex-grow: 2;
 /*   align-items: center;
   justify-content: center; */
@@ -52,13 +56,14 @@ button {
   background: #97979742;
 /*   color: rgb(200,27,27); */
   min-height: 40px;
+  width: 50%;
 /*   height: 20px; */
 /*   pad0 10px 0 10px; */
-  border-radius: 20px;
+  border-radius: 5px;
   text-transform: uppercase;
   letter-spacing: 2px;
   transition: all 0.1s ease;
-  margin: 1%;
+  margin: 0.25%;
   font-size: 20%;
 /* transform: scale(0.5); */
 }
@@ -75,3 +80,5 @@ button:hover {
 /* button svg {
   width: 16px;
 } */
+
+

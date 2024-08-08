@@ -22,11 +22,11 @@
     <button id="Distance" onclick="mybutton(0)">Distance: <input id="DistanceV" type="number" value="1"></button>
 
     <button id="Transparency" onclick="mybutton(1)">
-    Transparency:<br><select id="TransparencyV">
+    Transparency:<select id="TransparencyV">
       <option value="0">Background</option>
       <option value="1">Lines</option>
       <option value="2">Fill</option>
-      </select><br>
+      </select>
       <input id="TransparencyNV" type="number" value="1" min="0" max="255"> / 255
     </button>
 
@@ -35,7 +35,7 @@
     <button id="Polarity" onclick="mybutton(3)">Polarity: <input id="PolarityV" type="number" min="0" value="1"></button>
 
     <button id="xtrig" onclick="mybutton(4)">
-    X: <br><select id="xtrigV">
+    X:<select id="xtrigV">
       <option value="0">sin</option>
       <option value="1">cos</option>
       <option value="2">tan</option>
@@ -48,12 +48,12 @@
       <option value="9">reciprocalASin</option>
       <option value="10">reciprocalACos</option>
       <option value="11">reciprocalATan</option>
-      </select><br>
+      </select>
       <input id="xNV" type="number" value="1">
       </button>
 
     <button id="ytrig" onclick="mybutton(5)">
-    Y: <br><select id="ytrigV">
+    Y:<select id="ytrigV">
       <option value="0">sin</option>
       <option value="1">cos</option>
       <option value="2">tan</option>
@@ -66,16 +66,16 @@
       <option value="9">reciprocalASin</option>
       <option value="10">reciprocalACos</option>
       <option value="11">reciprocalATan</option>
-      </select><br>
+      </select>
       <input id="yNV" type="number" value="3">
       </button>
 
 
     <button id="Lines" onclick="mybutton(6)">
-    Lines: <br><select id="LinesV">
+    Lines:<select id="LinesV">
       <option value="0">Connections</option>
       <option value="1">Spacing</option>
-      </select><br>
+      </select>
       <input id="LinesNV" type="number" value="1" min="0" max="500"> / 500
       </button>
 
@@ -98,10 +98,20 @@
       </select>
     </button>
 
-    <button id="Colour" onclick="mybutton(10)">Colour: </button>
+    <button id="Colour" onclick="mybutton(10)">Colour:</button>
+    <input type="color" id="backgroundColorPicker">
+    <input type="color" id="outlineColor1Picker">
+    <input type="color" id="outlineColor2Picker">
 
-    <button id="Beans" onclick="mybutton(11)">
-    Mulitplier: <br><select id="MultiplierV">
+    <button id="BeansX" onclick="mybutton(11)">
+    Mulitplier x-axis:<select id="MultiplierXV">
+      <option value="0">None</option>
+      <option value="1">Pi</option>
+      </select>
+    </button>
+
+    <button id="BeansY" onclick="mybutton(12)">
+    Mulitplier y-axis: <select id="MultiplierYV">
       <option value="0">None</option>
       <option value="1">Pi</option>
       </select>
@@ -111,3 +121,4 @@
     <script src="eventlisteners.js"></script>
   </body>
 </html>
+

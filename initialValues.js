@@ -36,7 +36,7 @@ let bpress = 0; //prints to console if button is pressed or not//
 let trails = 0; //whether "o" (Y on controller) is pressed or not//
 let twist = 180; //the direction/speed the graph is generated//
 
-let colour = 1;
+let colour = 3;
 
 let speed = 0.05;
 
@@ -65,7 +65,8 @@ let funcy = 'sin';
     "Twist",
     "BlendMode",
     "Colour",
-    "Beans",
+    "BeansX",
+    "BeansY"
   ];
 
   let eyes = new keyboard();
@@ -139,3 +140,10 @@ let funcy = 'sin';
       console.error("Invalid blend mode index");
     }
   }
+
+  let backgroundColor = '#000000';
+
+  let outlineColor1 = '#FFFF00';
+
+  let outlineColor2 = '#000000';
+

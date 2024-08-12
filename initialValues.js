@@ -69,7 +69,7 @@ let funcy = 'sin';
     "BeansY"
   ];
 
-  let eyes = new keyboard();
+  let eyes = new keyboard(); // is eyes used???
 
   const trigFunctions = {
     sin: Math.sin,
@@ -109,15 +109,31 @@ let funcy = 'sin';
     return 0;
   }
 
-  function mybutton(boop) {   //changes click when mouse presses buttons
-    click = boop;
-    document.getElementById(elements[boop]).style.color = "#FFFFFF";
-    elements.forEach((element, i) => {
-      if (i != boop) {
-        document.getElementById(element).style.color = "#8B8B8B";
+//   function mybutton(boop) {   //changes click when mouse presses buttons
+//     click = boop;
+//     document.getElementById(elements[boop]).style.color = "#FFFFFF";
+//     elements.forEach((element, i) => {
+//       if (i != boop) {
+//         document.getElementById(element).style.color = "#8B8B8B";
+//       }
+//     });
+// }
+
+  function mybutton(buttonIndex) {
+    // Get all buttons in the group
+    const buttons = document.querySelectorAll('.btn-group-vertical .btn');
+    
+    // Remove primary style from all buttons and add secondary style
+    buttons.forEach((button, index) => {
+      if (index === buttonIndex) {
+        button.classList.remove('btn-secondary-custom');
+        button.classList.add('btn-primary-custom');
+      } else {
+        button.classList.remove('btn-primary-custom');
+        button.classList.add('btn-secondary-custom');
       }
     });
-}
+  }
 
   const blendModes = [
     () => blendMode(BLEND),
@@ -143,7 +159,7 @@ let funcy = 'sin';
 
   let backgroundColor = '#000000';
 
-  let outlineColor1 = '#FFFF00';
+  let outlineColor1 = '#FFFFFF';
 
   let outlineColor2 = '#000000';
 

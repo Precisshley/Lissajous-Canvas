@@ -156,16 +156,6 @@ class keyboard {
             document.getElementById("Colour").innerText = "Colour: " + nf(colour, 0, 0);
         }
     }
-
-    mybutton(boop) {   //changes click when mouse presses buttons
-        click = boop;
-        document.getElementById(elements[boop]).style.color = "#FFFFFF";
-        elements.forEach((element, i) => {
-            if (i != boop) {
-              document.getElementById(element).style.color = "#8B8B8B";
-            }
-        });
-    }
 }
 
 // document.addEventListener('keydown', (event) => {

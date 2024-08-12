@@ -12,7 +12,7 @@ function setup() {
     click = i;
     eyes.buttonUpdate(0);
   }
-  eyes.mybutton(0);
+  mybutton(0);
   blendMode(SCREEN);
 
   if (windowHeight < windowWidth) {

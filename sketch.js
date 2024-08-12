@@ -12,7 +12,7 @@ function setup() {
     click = i;
     eyes.buttonUpdate(0);
   }
-  eyes.mybutton(0);
+  mybutton(0);
   blendMode(SCREEN);
 
   if (windowHeight < windowWidth) {
@@ -46,7 +46,7 @@ function draw() {
   } else {
     blendMode(BLEND);
     
-    fill(0, 0, 0, backTrans);
+    fill(red(color(backgroundColor)), green(color(backgroundColor)), blue(color(backgroundColor)), backTrans);
     rect(0, 0, width, height);
     setBlendModeByIndex(blend);
   }
@@ -69,19 +69,18 @@ class Particle {
     } else if (colour == 1) {
       stroke(255, lineTrans);
     } else if (colour == 2) {
+      let colorCount = ((frameCount + ((this.i) * pointSpacing)) % ((amount) * pointSpacing)) + startP;
       stroke(
-        map(this.i, 0, particles.length, 0, 255),
-        map(this.i, 0, particles.length, 0, 255),
-        map(this.i, 0, particles.length, 0, 255),
+        map(colorCount, 0, ((amount) * pointSpacing), 0, 255),
+        map(colorCount, 0, ((amount) * pointSpacing), 0, 255),
+        map(colorCount, 0, ((amount) * pointSpacing), 0, 255),
         lineTrans
       );
     } else if (colour == 3) {
-      stroke(
-        map(this.i, 0, particles.length, 255, 0),
-        map(this.i, 0, particles.length, 255, 0),
-        map(this.i, 0, particles.length, 255, 0),
-        lineTrans
-      );
+      let colorCount = ((frameCount + ((this.i) * pointSpacing)) % ((amount) * pointSpacing)) + startP;
+      let c = lerpColor(color(outlineColor1), color(outlineColor2), map(colorCount, ((amount) * pointSpacing), 0, 0, 1));
+      c.setAlpha(lineTrans);
+      stroke(c);
     } else if (colour == 4) {
       stroke(
         map(this.i, 0, particles.length, 100, 0),
@@ -140,11 +139,8 @@ class Particle {
     let starty = calc / lissaX * twist;
     let startw = calc / lissaY * twist;
 
-    let x;
-    let y;
-
-      x = start * calculateTrig(starty, funcx)
-      y = start * calculateTrig(startw, funcy)
+    let x = start * calculateTrig(starty, funcx)
+    let y = start * calculateTrig(startw, funcy)
 
 
     return this.getPolar(x, y)

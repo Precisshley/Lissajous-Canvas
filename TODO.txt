@@ -1,6 +1,6 @@
 //add more colours
 //add preset codes
-//add PI adjustments to both x and y
+//add PI adjustments to controller
 //convert particles to classes <--done (working out the kinks):
 //fixed expanding particle issue, can now be changed with startP - add to menu
 //find a way to make loop more efficient
@@ -20,4 +20,5 @@
 
 //consider ellipse, rect, etc shape setting as opposed to points. Could switch between settings in the same way as cos sin tan solution. Would need settings for shape angle, and size.
 //consider sliders rather input boxes.
-//look into switching to React for components, makes button additions in html easier to implement.
+//Add control over timeline (framecount)
+//Timeline control synced with music/noise

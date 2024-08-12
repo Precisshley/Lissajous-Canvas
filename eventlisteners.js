@@ -68,8 +68,8 @@ document.getElementById("TransparencyNV").addEventListener('input', event => {
   }
 });
 
-// updating multiplier settings (keyboard)
-document.getElementById("MultiplierV").addEventListener('input', event => {
+// updating multiplier settings x and y axis' (keyboard)
+document.getElementById("MultiplierXV").addEventListener('input', event => {
   multiX = int(event.target.value);
   if (multiX == 0) {
     multiplierX = 1;
@@ -77,6 +77,16 @@ document.getElementById("MultiplierV").addEventListener('input', event => {
     multiplierX = 1000 * PI;
   }
 });
+
+document.getElementById("MultiplierYV").addEventListener('input', event => {
+  multiY = int(event.target.value);
+  if (multiY == 0) {
+    multiplierY = 1;
+  } else if (multiY == 1) {
+    multiplierY = 1000 * PI;
+  }
+});
+
 
 // updating Y value (keyboard)
 // document.getElementById("lissaYV").addEventListener('input', event => {
@@ -127,3 +137,15 @@ document.addEventListener('keyup', event => {
     eyes.reset();
   }
 })
+
+document.getElementById('backgroundColorPicker').addEventListener('input', () => {
+  backgroundColor = backgroundColorPicker.value;
+});
+
+document.getElementById('outlineColor1Picker').addEventListener('input', () => {
+  outlineColor1 = outlineColor1Picker.value;
+});
+
+document.getElementById('outlineColor2Picker').addEventListener('input', () => {
+  outlineColor2 = outlineColor2Picker.value;
+});

@@ -9,9 +9,9 @@
 //test controller on different devices
 //"O" for mobile
 //instructions
-//better option names
+//better option names - (rename 'distance' to 'amplitude')
 //test on mobile
-//R reset on keyboard doesnt account for pi reset on controller
+//R reset on keyboard doesnt account for pi reset on controller (or lines)
 //fix min max for line spacing, connections, and amount(amount might be fixed)
 
 //fix mouse scroll direction on inputs (it is bad design)
@@ -22,3 +22,6 @@
 //consider sliders rather input boxes.
 //Add control over timeline (framecount)
 //Timeline control synced with music/noise
+
+//option for full screen instead of square
+//X or hide button for instructions

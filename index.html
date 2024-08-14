@@ -22,19 +22,11 @@
   <div class="container-fluid">
     <div class="row">
       <div>
-        <main></main>
-        <script src="sketch.js"></script>
-        <script src="controller.js"></script>
-        <script src="keys.js"></script>
-        <script src="initialValues.js"></script>
-      </div>
-      <div>
         <div class="btn-group-vertical">
 
-        <div class="logo">
-          <img src="Images/logo.jpeg" alt="Logo" width="213" height="98">
-        </div>
-
+          <div class="logo">
+            <img src="Images/logo.jpeg" alt="Logo" width="213" height="98">
+          </div>
 
           <button class="btn btn-primary" id="Distance" onclick="mybutton(0)">
             <div class="btn-content">
@@ -71,25 +63,24 @@
             </div>
           </button>
 
-
           <button class="btn btn-primary" id="xtrig" onclick="mybutton(4)">
             <div class="btn-content">
               <div class="btn-title">X:</div>
               <div class="btn-input">
                 <select id="xtrigV" class="form-control d-inline w-auto">
-              <option value="0">sin</option>
-              <option value="1">cos</option>
-              <option value="2">tan</option>
-              <option value="3">asin</option>
-              <option value="4">acos</option>
-              <option value="5">atan</option>
-              <option value="6">reciprocalSin</option>
-              <option value="7">reciprocalCos</option>
-              <option value="8">reciprocalTan</option>
-              <option value="9">reciprocalASin</option>
-              <option value="10">reciprocalACos</option>
-              <option value="11">reciprocalATan</option>
-            </select>
+                  <option value="0">sin</option>
+                  <option value="1">cos</option>
+                  <option value="2">tan</option>
+                  <option value="3">asin</option>
+                  <option value="4">acos</option>
+                  <option value="5">atan</option>
+                  <option value="6">reciprocalSin</option>
+                  <option value="7">reciprocalCos</option>
+                  <option value="8">reciprocalTan</option>
+                  <option value="9">reciprocalASin</option>
+                  <option value="10">reciprocalACos</option>
+                  <option value="11">reciprocalATan</option>
+                </select>
                 <input id="xNV" type="number" value="1" min="-999" max="999" class="form-control d-inline w-auto">
               </div>
             </div>
@@ -99,20 +90,20 @@
             <div class="btn-content">
               <div class="btn-title">Y:</div>
               <div class="btn-input">
-              <select id="ytrigV" class="form-control d-inline w-auto">
-              <option value="0">sin</option>
-              <option value="1">cos</option>
-              <option value="2">tan</option>
-              <option value="3">asin</option>
-              <option value="4">acos</option>
-              <option value="5">atan</option>
-              <option value="6">reciprocalSin</option>
-              <option value="7">reciprocalCos</option>
-              <option value="8">reciprocalTan</option>
-              <option value="9">reciprocalASin</option>
-              <option value="10">reciprocalACos</option>
-              <option value="11">reciprocalATan</option>
-            </select>
+                <select id="ytrigV" class="form-control d-inline w-auto">
+                  <option value="0">sin</option>
+                  <option value="1">cos</option>
+                  <option value="2">tan</option>
+                  <option value="3">asin</option>
+                  <option value="4">acos</option>
+                  <option value="5">atan</option>
+                  <option value="6">reciprocalSin</option>
+                  <option value="7">reciprocalCos</option>
+                  <option value="8">reciprocalTan</option>
+                  <option value="9">reciprocalASin</option>
+                  <option value="10">reciprocalACos</option>
+                  <option value="11">reciprocalATan</option>
+                </select>
                 <input id="yNV" type="number" value="3" min="-999" max="999" class="form-control d-inline w-auto">
               </div>
             </div>
@@ -122,26 +113,26 @@
             <div class="btn-content">
               <div class="btn-title">Lines:</div>
               <div class="btn-input">
-              <select id="LinesV" class="form-control d-inline w-auto">
-              <option value="0">Connections</option>
-              <option value="1">Spacing</option>
-            </select>
+                <select id="LinesV" class="form-control d-inline w-auto">
+                  <option value="0">Connections</option>
+                  <option value="1">Spacing</option>
+                </select>
                 <input id="LinesNV" type="number" value="1" min="0" max="500" class="form-control d-inline w-auto"> / 500
-            </div>
+              </div>
             </div>
           </button>
 
           <button class="btn btn-primary" id="Amount" onclick="mybutton(7)">
             <div class="btn-content">
               <div class="btn-title">Amount:</div>
-              <div class="btn-input"><input id="AmountV" type="number" min="0" max="500" value="1" class="form-control d-inline w-auto"> / 500
+              <div class="btn-input"><input id="AmountV" type="number" min="0" max="500" value="1" class="form-control d-inline w-auto"> / 500</div>
             </div>
           </button>
 
           <button class="btn btn-primary" id="Twist" onclick="mybutton(8)">
             <div class="btn-content">
               <div class="btn-title">Twist:</div>
-              <div class="btn-input"><input id="TwistV" type="number" value="1" min="-999" max="999" class="form-control d-inline w-auto">
+              <div class="btn-input"><input id="TwistV" type="number" value="1" min="-999" max="999" class="form-control d-inline w-auto"></div>
             </div>
           </button>
 
@@ -149,42 +140,42 @@
             <div class="btn-content">
               <div class="btn-title">BlendMode:</div>
               <div class="btn-input">
-              <select id="BlendModeV" class="form-control d-inline w-auto">
-              <option value="0">Default</option>
-              <option value="1">Screen</option>
-              <option value="2">Add</option>
-              <option value="3">Difference</option>
-              <option value="4">Exclusion</option>
-              <option value="5">Lightest</option>
-              <option value="6">Overlay</option>
-              <option value="7">Hard Light</option>
-              <option value="8">Soft Light</option>
-              <option value="9">Dodge</option>
-              </select>
+                <select id="BlendModeV" class="form-control d-inline w-auto">
+                  <option value="0">Default</option>
+                  <option value="1">Screen</option>
+                  <option value="2">Add</option>
+                  <option value="3">Difference</option>
+                  <option value="4">Exclusion</option>
+                  <option value="5">Lightest</option>
+                  <option value="6">Overlay</option>
+                  <option value="7">Hard Light</option>
+                  <option value="8">Soft Light</option>
+                  <option value="9">Dodge</option>
+                </select>
               </div>
             </div>
           </button>
 
           <button class="btn btn-primary" id="Colour" onclick="mybutton(10)">
-              <div class="btn-content">
-                  <div class="btn-title">Colour:</div>
-                  <div class="btn-input">
-                  <input type="color" id="backgroundColorPicker" class="form-control mb-2">
-                  <input type="color" id="outlineColor1Picker" class="form-control mb-2">
-                  <input type="color" id="outlineColor2Picker" class="form-control mb-2">
-                  </div>
+            <div class="btn-content">
+              <div class="btn-title">Colour:</div>
+              <div class="btn-input">
+                <input type="color" id="backgroundColorPicker" class="form-control mb-2">
+                <input type="color" id="outlineColor1Picker" class="form-control mb-2">
+                <input type="color" id="outlineColor2Picker" class="form-control mb-2">
               </div>
+            </div>
           </button>
-
 
           <button class="btn btn-primary" id="BeansX" onclick="mybutton(11)">
             <div class="btn-content">
-              <div class="btn-title">Multiplier y-axis:</div>
+              <div class="btn-title">Multiplier x-axis:</div>
               <div class="btn-input">
-              <select id="MultiplierXV" class="form-control d-inline w-auto">
-              <option value="0">None</option>
-              <option value="1">Pi</option>
-            </select>
+                <select id="MultiplierXV" class="form-control d-inline w-auto">
+                  <option value="0">None</option>
+                  <option value="1">Pi</option>
+                </select>
+              </div>
             </div>
           </button>
 
@@ -192,21 +183,58 @@
             <div class="btn-content">
               <div class="btn-title">Multiplier y-axis:</div>
               <div class="btn-input">
-              <select id="MultiplierYV" class="form-control d-inline w-auto">
-              <option value="0">None</option>
-              <option value="1">Pi</option>
-            </select>
+                <select id="MultiplierYV" class="form-control d-inline w-auto">
+                  <option value="0">None</option>
+                  <option value="1">Pi</option>
+                </select>
+              </div>
             </div>
           </button>
 
+          <!-- New Collapsible Section -->
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample">
+            More Examples
+          </button>
+          
+          <div class="collapse" id="collapseExample">
+              
+            <!-- Add Buttons Here -->
+          </div>
+
         </div>
       </div>
+
+      <div>
+        <main></main>
+        <script src="sketch.js"></script>
+        <script src="controller.js"></script>
+        <script src="keys.js"></script>
+        <script src="initialValues.js"></script>
+      </div>
+
+      <div class="col">
+        <!-- Jumbotron for Instructions -->
+        <div class="jumbotron">
+          <h1 class="display-4">Instructions</h1>
+          <p class="lead">Use the buttons on the left to adjust the parameters of the Lissajous curves.</p>
+          <hr class="my-4">
+          <p>Each button controls a specific parameter:</p>
+          <ul>
+            <li><strong>Distance:</strong> Adjusts the distance of the Lissajous curve.</li>
+            <li><strong>Transparency:</strong> Adjusts the transparency of the background, lines, or fill.</li>
+            <li><strong>Radians:</strong> Sets the angle in radians.</li>
+            <!-- Add more instructions as needed -->
+          </ul>
+          <p>For more detailed explanations, refer to the documentation or help section.</p>
+        </div>
+      </div>
+
     </div>
   </div>
 
   <!-- Bootstrap JS and dependencies -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   
   <!-- Custom JS -->
@@ -215,27 +243,23 @@
   <!-- Inline JavaScript to adjust button title widths -->
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-  
-  // Get all elements with class 'btn-title'
-  const titles = document.querySelectorAll(".btn-title");
+      // Get all elements with class 'btn-title'
+      const titles = document.querySelectorAll(".btn-title");
 
+      // Find the maximum width of the titles
+      let maxWidth = 0;
+      titles.forEach(title => {
+        const width = title.getBoundingClientRect().width;
+        if (width > maxWidth) {
+          maxWidth = width;
+        }
+      });
 
-  // Find the maximum width of the titles
-  let maxWidth = 0;
-  titles.forEach(title => {
-    const width = title.getBoundingClientRect().width;
-    if (width > maxWidth) {
-      maxWidth = width;
-    }
-  });
-  
-  // Set the maximum width to all titles
-  titles.forEach(title => {
-    title.style.minWidth = `${maxWidth}px`;
-  });
-
-});
-
+      // Set the maximum width to all titles
+      titles.forEach(title => {
+        title.style.minWidth = `${maxWidth}px`;
+      });
+    });
   </script>
 </body>
 </html>

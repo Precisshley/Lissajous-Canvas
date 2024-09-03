@@ -60,12 +60,21 @@ body:hover {
 }
 
 .jumbotron {
+  height: 100%;
   background-color: #000000; /* Dark background color */
   color: #f8f9fa; /* Light text color */
   padding: 2rem 1rem;
   border-radius: 0px;
   width: 100%; /* Ensure it takes up full width of its container */
-  height: auto;
+  overflow-y: auto;  /* Enable vertical scrolling */
+  overflow-x: hidden; /* Disable horizontal scrolling (optional) */
+}
+.jumbotron {
+  max-height: 600px; /* Set a maximum height for the jumbotron */
+  overflow-y: auto;  /* Enable vertical scrolling */
+  overflow-x: hidden; /* Disable horizontal scrolling (optional) */
+  padding: 20px;     /* Adjust padding as needed */
+  margin: 0;         /* Remove default margin */
 }
 
 .jumbotron h1,
@@ -193,4 +202,31 @@ input[type="number"], select, input[type="text"], textarea {
 .logo {
   border: 2px solid #ffffff18;
   width: 100%;
+}
+
+
+/* Social Media Links Styling */
+.social-media {
+  display: flex;
+  justify-content: left; /* Center the icons horizontally */
+  background-color: #000; /* Black background */
+  padding: 1rem;
+}
+
+.social-icon svg{
+  margin: 0 0.5rem; /* Space between icons */
+  color: white; /* Icon color */
+  fill: white;
+  font-size: 24px; /* Icon size */
+  transition: color 0.3s; /* Smooth transition for hover effect */
+  vertical-align: middle;
+}
+
+.social-icon svg:hover{
+  color: #ccc; /* Slightly lighter color on hover */
+  fill: #ccc;
+}
+
+.instructions-list{
+  padding-left: 25px; /* Remove left padding */
 }

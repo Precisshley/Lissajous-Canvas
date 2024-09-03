@@ -36,7 +36,6 @@ function draw() {
   lissaY = initialY * multiplierY
   fill(255);
   blendMode(BLEND);
-
   // fill(255);
   // let fps = frameRate();
   // console.log("FPS: " + fps.toFixed(2), 10, height - 10);
@@ -114,16 +113,25 @@ class Particle {
       //fix polar limits
       //fix simplecalc
       //fix colors
-      beginShape();
-      vertex.apply(null, this.getPoints());
-      // ellipse(...this.getPoints(),mouseY,mouseY); // testing circles
-      if (this.i + lineCount + 1 <= particles.length){ //maybe working
+      const points = this.getPoints();
+
+      // Could put this if statement in the draw function and make two functions (points, and vertex) in this class. 
+      // May reduce logic time.
+      if (lineCount == 0){ 
+        point(points[0], points[1]);
+      } else {
+        beginShape();
+        vertex(points[0], points[1]);
+        // ellipse(...this.getPoints(),mouseY,mouseY); // testing circles
+        if (this.i + lineCount + 1 <= particles.length){ //maybe working
         for (var j = 0; j < lineCount + 1; j++) {
-          vertex.apply(null, particles[this.i + j].getPoints());
+          const nextPoints = particles[this.i + j].getPoints();
+          vertex(nextPoints[0], nextPoints[1]);
+          }
         }
+        vertex(points[0], points[1]);
+        endShape();
       }
-      vertex.apply(null, this.getPoints());
-      endShape();
 
       // data[i] = data[i] + speed;
     }
@@ -155,7 +163,8 @@ class Particle {
   getPolar(a, b) {
     let ab = [a, b];
     for (var i = 0; i < polar; i++) {
-      ab = this.calcPolar.apply(null, ab)
+      // ab = this.calcPolar.apply(null, ab)
+      ab = this.calcPolar(ab[0], ab[1]);
     }
     return ab
   }

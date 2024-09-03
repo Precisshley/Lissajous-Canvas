@@ -25,3 +25,5 @@
 
 //option for full screen instead of square
 //X or hide button for instructions
+
+//fix reset buttons

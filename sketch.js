@@ -15,12 +15,14 @@ function setup() {
   mybutton(0);
   blendMode(SCREEN);
 
+
   if (windowHeight < windowWidth) {
     createCanvas(windowHeight, windowHeight);
   } else {
     createCanvas(windowWidth, windowWidth);
   }
   lissaY = 1;
+  pixelDensity(1); //new
 }
 
 function windowResized() {

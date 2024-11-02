@@ -22,7 +22,7 @@ function setup() {
     createCanvas(windowWidth, windowWidth);
   }
   lissaY = 1;
-  pixelDensity(1); //new
+  pixelDensity(3); //new
 }
 
 function windowResized() {

@@ -1,310 +1,318 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lissajous Canvas</title>
-  
-  <!-- Bootstrap CSS -->
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- p5.js Library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-  
-  <!-- Custom CSS -->
-  <link rel="stylesheet" type="text/css" href="style.css" />
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Lissajous Canvas</title>
+        <style>
+            body {
+                background-color: #000;
+                color: white;
+                font-family: Arial, sans-serif;
+                margin: 0;
+            }
 
-  <!-- Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+            #info {
+                display: none;
+                width: 350px;
+                position: absolute;
+                margin: 15px;
+            }
+        </style>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" />
+
+        <!-- p5.js Library -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+
+        <!-- Icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+        <!-- Controller.js Library -->
+        <script src="https://samiare.github.io/Controller.js/js/Controller.js"></script>
+        <script src="https://samiare.github.io/Controller.js/js/Controller.layouts.js"></script>
 
 
-  <!-- Controller.js Library -->
-  <script src="https://samiare.github.io/Controller.js/js/Controller.js"></script>
-  <script src="https://samiare.github.io/Controller.js/js/Controller.layouts.js"></script>
-</head>
-<body>
-  <div class="container-fluid">
-    <div class="row">
-      <div>
-        <div class="btn-group-vertical">
+    </head>
 
-          <div class="logo">
-            <img src="Images/logo.jpeg" alt="Logo" width="213" height="98">
-          </div>
+    <body>
+        <button id="openButton"><img alt="" src="Arrow 1.svg"></button>
 
-          <button class="btn btn-primary" id="Distance" onclick="mybutton(0)">
-            <div class="btn-content">
-              <div class="btn-title">Distance:</div>
-              <div class="btn-input"><input id="DistanceV" type="number" value="1" min="-999" max="999" class="form-control d-inline w-auto"></div>
+        <div class="info-right">
+            <div class="logo" style="height: 98px;">
+                <img src="Images/logo.jpeg" alt="Logo" width="213" height="98">
             </div>
-          </button>
-
-          <button class="btn btn-primary" id="Transparency" onclick="mybutton(1)">
-            <div class="btn-content">
-              <div class="btn-title">Transparency:</div>
-              <div class="btn-input">
-                <select id="TransparencyV" class="form-control d-inline w-auto">
-                  <option value="0">Background</option>
-                  <option value="1">Lines</option>
-                  <option value="2">Fill</option>
-                </select>
-                <input id="TransparencyNV" type="number" value="1" min="0" max="255" class="form-control d-inline w-auto"> / 255
-              </div>
+            <div class="social-media">
+                <a href="https://github.com/Precisshley/Lissajous-Canvas" target="_blank" class="social-icon"
+                    aria-label="GitHub">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" width="24"
+                        height="24"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                        <path
+                            d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" />
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com/precisshley/" target="_blank" class="social-icon" aria-label="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24"
+                        height="24"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                        <path
+                            d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
+                    </svg>
+                </a>
             </div>
-          </button>
-
-          <button class="btn btn-primary" id="Radians" onclick="mybutton(2)">
-            <div class="btn-content">
-              <div class="btn-title">Radians:</div>
-              <div class="btn-input"><input id="RadiansV" type="number" min="0" max="360" value="1" class="form-control d-inline w-auto"> / 360</div>
-            </div>
-          </button>
-
-          <button class="btn btn-primary" id="Polarity" onclick="mybutton(3)">
-            <div class="btn-content">
-              <div class="btn-title">Polarity:</div>
-              <div class="btn-input"><input id="PolarityV" type="number" min="0" max="360" value="1" class="form-control d-inline w-auto"> / 360</div>
-            </div>
-          </button>
-
-          <button class="btn btn-primary" id="xtrig" onclick="mybutton(4)">
-            <div class="btn-content">
-              <div class="btn-title">X:</div>
-              <div class="btn-input">
-                <select id="xtrigV" class="form-control d-inline w-auto">
-                  <option value="0">sin</option>
-                  <option value="1">cos</option>
-                  <option value="2">tan</option>
-                  <option value="3">asin</option>
-                  <option value="4">acos</option>
-                  <option value="5">atan</option>
-                  <option value="6">reciprocalSin</option>
-                  <option value="7">reciprocalCos</option>
-                  <option value="8">reciprocalTan</option>
-                  <option value="9">reciprocalASin</option>
-                  <option value="10">reciprocalACos</option>
-                  <option value="11">reciprocalATan</option>
-                </select>
-                <input id="xNV" type="number" value="1" min="-999" max="999" class="form-control d-inline w-auto">
-              </div>
-            </div>
-          </button>
-
-          <button class="btn btn-primary" id="ytrig" onclick="mybutton(5)">
-            <div class="btn-content">
-              <div class="btn-title">Y:</div>
-              <div class="btn-input">
-                <select id="ytrigV" class="form-control d-inline w-auto">
-                  <option value="0">sin</option>
-                  <option value="1">cos</option>
-                  <option value="2">tan</option>
-                  <option value="3">asin</option>
-                  <option value="4">acos</option>
-                  <option value="5">atan</option>
-                  <option value="6">reciprocalSin</option>
-                  <option value="7">reciprocalCos</option>
-                  <option value="8">reciprocalTan</option>
-                  <option value="9">reciprocalASin</option>
-                  <option value="10">reciprocalACos</option>
-                  <option value="11">reciprocalATan</option>
-                </select>
-                <input id="yNV" type="number" value="3" min="-999" max="999" class="form-control d-inline w-auto">
-              </div>
-            </div>
-          </button>
-
-          <button class="btn btn-primary" id="Lines" onclick="mybutton(6)">
-            <div class="btn-content">
-              <div class="btn-title">Lines:</div>
-              <div class="btn-input">
-                <select id="LinesV" class="form-control d-inline w-auto">
-                  <option value="0">Connections</option>
-                  <option value="1">Spacing</option>
-                </select>
-                <input id="LinesNV" type="number" value="1" min="0" max="500" class="form-control d-inline w-auto"> / 500
-              </div>
-            </div>
-          </button>
-
-          <button class="btn btn-primary" id="Amount" onclick="mybutton(7)">
-            <div class="btn-content">
-              <div class="btn-title">Amount:</div>
-              <div class="btn-input"><input id="AmountV" type="number" min="0" max="500" value="1" class="form-control d-inline w-auto"> / 500</div>
-            </div>
-          </button>
-
-          <button class="btn btn-primary" id="Twist" onclick="mybutton(8)">
-            <div class="btn-content">
-              <div class="btn-title">Twist:</div>
-              <div class="btn-input"><input id="TwistV" type="number" value="1" min="-999" max="999" class="form-control d-inline w-auto"></div>
-            </div>
-          </button>
-
-          <button class="btn btn-primary" id="BlendMode" onclick="mybutton(9)">
-            <div class="btn-content">
-              <div class="btn-title">BlendMode:</div>
-              <div class="btn-input">
-                <select id="BlendModeV" class="form-control d-inline w-auto">
-                  <option value="0">Default</option>
-                  <option value="1">Screen</option>
-                  <option value="2">Add</option>
-                  <option value="3">Difference</option>
-                  <option value="4">Exclusion</option>
-                  <option value="5">Lightest</option>
-                  <option value="6">Overlay</option>
-                  <option value="7">Hard Light</option>
-                  <option value="8">Soft Light</option>
-                  <option value="9">Dodge</option> <!-- could add reduce setting -->
-                </select>
-              </div>
-            </div>
-          </button>
-
-          <!-- Color Picker Section -->
-          <div class="color-picker">
-            <label for="colorPicker">Choose a Color:</label>
-            <input type="color" id="backgroundColorPicker" class="form-control mb-2">
-            <input type="color" id="outlineColor1Picker" class="form-control mb-2">
-            <input type="color" id="outlineColor2Picker" class="form-control mb-2">
-          </div>
-
-          <button class="btn btn-primary" id="Colour" onclick="mybutton(10)">
-            <div class="btn-content">
-              <div class="btn-title">Colour:</div>
-              <div class="btn-input">
-                <input type="color" id="backgroundColorPicker" class="form-control mb-2">
-                <input type="color" id="outlineColor1Picker" class="form-control mb-2">
-                <input type="color" id="outlineColor2Picker" class="form-control mb-2">
-              </div>
-            </div>
-          </button>
-
-          <button class="btn btn-primary" id="BeansX" onclick="mybutton(11)">
-            <div class="btn-content">
-              <div class="btn-title">Multiplier x-axis:</div>
-              <div class="btn-input">
-                <select id="MultiplierXV" class="form-control d-inline w-auto">
-                  <option value="0">None</option>
-                  <option value="1">Pi</option>
-                </select>
-              </div>
-            </div>
-          </button>
-
-          <button class="btn btn-primary" id="BeansY" onclick="mybutton(12)">
-            <div class="btn-content">
-              <div class="btn-title">Multiplier y-axis:</div>
-              <div class="btn-input">
-                <select id="MultiplierYV" class="form-control d-inline w-auto">
-                  <option value="0">None</option>
-                  <option value="1">Pi</option>
-                </select>
-              </div>
-            </div>
-          </button>
-
-          <!-- Collapsible Section -->
-          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample">
-            Collapse test
-          </button>
-          
-          <div class="collapse" id="collapseExample">
-              
-            <!-- buttons here -->
-          </div>
-
         </div>
-      </div>
+        
 
-      <div>
-        <main></main>
-        <script src="sketch.js"></script>
-        <script src="controller.js"></script>
-        <script src="keys.js"></script>
-        <script src="initialValues.js"></script>
-      </div>
+        <div id="info">
 
-      <div class="col">
-        <!-- Jumbotron -->
-        <div class="jumbotron">
-          <h2>Keyboard Shortcuts</h2>
-            <ul>
-              <li><strong>[Shortcut Here]:</strong> [Function]</li>
-              <li><strong>[Shortcut Here]:</strong> [Function]</li>
-            </ul>
-            <!-- key shortcuts -->
-          <hr class="my-4">
-          <h2>Getting Started</h2>
-          <p class="lead">Use the inputs on the left to adjust the parameters of the Lissajous curves:</p>
-          
-          <ul class="instructions-list">
-            <li><strong>Distance:</strong> Adjusts the distance of the Lissajous curve.</li>
-            <li><strong>Transparency:</strong> Adjusts the transparency of the background, lines, or fill.</li>
-            <li><strong>Radians:</strong> Sets the angle in radians.</li>
-            <li><strong>Polarity:</strong> Adjusts the polarity of the curve.</li>
-            <li><strong>X:</strong> Determines the trigonometric function and multiplier used for the X-axis.</li>
-            <li><strong>Y:</strong> Determines the trigonometric function and multiplier used for the Y-axis.</li>
-            <li><strong>Lines:</strong> Controls the connection style or spacing of the lines.</li>
-            <li><strong>Amount:</strong> Adjusts the number of curves or repetitions.</li>
-            <li><strong>Twist:</strong> Alters the twist effect applied to the curve.</li>
-            <li><strong>BlendMode:</strong> Sets the blending mode for the curve rendering.</li>
-            <li><strong>Colour:</strong> Allows you to select colors for the background and outlines.</li>
-            <li><strong>Multiplier x-axis:</strong> Chooses a multiplier for the X-axis values.</li>
-            <li><strong>Multiplier y-axis:</strong> Chooses a multiplier for the Y-axis values.</li>
-          </ul>
-          <p>For more detailed explanations, refer to the documentation or help section.</p>
+            <div class="menu-wrapper">
+                <div class="settings">
+                    <div class="headertxt">Points</div>
+                    <div class="points-container">
+                        <div class="lines">
+                            <div class="labeltxt">Particles</div>
 
-          <hr class="my-4">
-          <!-- Social links -->
-          <div class="social-media">
-            <a href="https://github.com/Precisshley/Lissajous-Canvas" target="_blank" class="social-icon" aria-label="GitHub">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" width="24" height="24"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
-            </a>
-            <a href="https://www.instagram.com/precisshley/" target="_blank" class="social-icon" aria-label="Instagram">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
-            </a>
-            
-          </div>
+                            <div class="slidecontainer">
+                                <span id="particle-val"></span>
+                                <input type="range" min="0" max="500" value="500" class="slider" id="AmountV">
+                            </div>
+                        </div>
+                        <div class="lines">
+                            <div class="labeltxt">Connections</div>
+                            <div class="slidecontainer">
+                                <span id="connection-val"></span>
+                                <input type="range" min="0" max="10" value="0" class="slider" id="LinesNV">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="x-and-y-wrap">
+                        <div class="row1">
+                            <div class="column1">
+                                <div class="labeltxt" style="color: rgba(0, 0, 0, 0);">.</div>
+                                <div class="labeltxt">Amplitude</div>
+                                <div class="labeltxt">Frequency</div>
+                                <div class="labeltxt">Trig</div>
+                                <div class="labeltxt">Multiplier</div>
+                            </div>
+                            <div class="column-right">
+                                <div class="column2">
+                                    <b class="headertxt" style="color: #888888; font-size:12px;">X</b>
+                                    <div class="column2 borderright">
+                                        <input id="DistanceV" type="number" value="1" min="-999" max="999"
+                                            class="num-input">
+                                        <input id="xNV" type="number" value="1" min="-999" max="999" class="num-input">
+                                        <select id="xtrigV">
+                                            <option value="0">sin</option>
+                                            <option value="1">cos</option>
+                                            <option value="2">tan</option>
+                                            <option value="3">asin</option>
+                                            <option value="4">acos</option>
+                                            <option value="5">atan</option>
+                                            <option value="6">reciprocalSin</option>
+                                            <option value="7">reciprocalCos</option>
+                                            <option value="8">reciprocalTan</option>
+                                            <option value="9">reciprocalASin</option>
+                                            <option value="10">reciprocalACos</option>
+                                            <option value="11">reciprocalATan</option>
+                                        </select>
+                                        <select id="MultiplierXV">
+                                            <option value="0">None</option>
+                                            <option value="1">PI</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="column3">
+                                    <b class="headertxt" style="color: #888888; font-size:12px;">Y</b>
+                                    <div class="column3 borderright">
+                                        <input id="DistanceV2" type="number" value="1" min="-999" max="999"
+                                            class="num-input">
+                                        <input id="yNV" type="number" value="1" min="-999" max="999" class="num-input">
+                                        <select id="ytrigV">
+                                            <option value="0">sin</option>
+                                            <option value="1">cos</option>
+                                            <option value="2">tan</option>
+                                            <option value="3">asin</option>
+                                            <option value="4">acos</option>
+                                            <option value="5">atan</option>
+                                            <option value="6">reciprocalSin</option>
+                                            <option value="7">reciprocalCos</option>
+                                            <option value="8">reciprocalTan</option>
+                                            <option value="9">reciprocalASin</option>
+                                            <option value="10">reciprocalACos</option>
+                                            <option value="11">reciprocalATan</option>
+                                        </select>
+                                        <select id="MultiplierYV">
+                                            <option value="0">None</option>
+                                            <option value="1">PI</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="column4">
+                                    <div class="labeltxt" style="color: rgba(0, 0, 0, 0);">.</div>
+                                    <input type="checkbox" class="styled-checkbox">
+                                    <input type="checkbox" class="styled-checkbox">
+                                    <input type="checkbox" class="styled-checkbox">
+                                    <input type="checkbox" class="styled-checkbox">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lines">
+                            <div class="labeltxt">Phase Shift</div>
+                            <div class="slidecontainer">
+                                <span id="phase-val"></span>
+                                <input type="range" min="1" max="500" value="180" class="slider" id="TwistV">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="divider"></div>
+                    <div class="headertxt">Transform</div>
+                    <div class="transform-wrap">
+                        <div class="lines">
+                            <div class="labeltxt">Degrees</div>
+
+                            <div class="slidecontainer">
+                                <span id="degree-val"></span>
+                                <input type="range" min="0" max="360" value="0" class="slider" id="RadiansV">
+                            </div>
+
+                        </div>
+                        <div class="lines">
+                            <div class="labeltxt">
+                                <p class="polar-coordinate">Polar Coordinate </p>
+                                <p class="polar-coordinate">(Recursion)</p>
+                            </div>
+
+                            <div class="slidecontainer">
+                                <span id="polar-val"></span>
+                                <input type="range" min="0" max="30" value="0" class="slider" id="PolarityV">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="headertxt">Color</div>
+                    <div class="color-wrap">
+                        <div class="color-sect">
+                            <div class="lines">
+                                <div class="labeltxt">Background</div>
+                                <div class="color-row">
+                                    <div class="slidecontainer">
+                                        <span id="trans-back"></span>
+                                        <input type="range" min="0" max="255" value="20" class="slider"
+                                            id="TransparencyNVb">
+                                    </div>
+                                    <input type="color" value="#000000" id="backgroundColorPicker" class="colorInput" />
+                                </div>
+                            </div>
+                            <div class="lines">
+                                <div class="labeltxt">Lines (1)</div>
+                                <div class="color-row">
+                                    <div class="slidecontainer">
+                                        <span id="trans-lines"></span>
+                                        <input type="range" min="0" max="255" value="255" class="slider"
+                                            id="TransparencyNVl">
+                                    </div>
+                                    <input type="color" value="#FFFFFF" id="outlineColor1Picker" class="colorInput" />
+                                </div>
+                            </div>
+                            <div class="lines">
+                                <div class="labeltxt">Lines (2)</div>
+                                <div class="color-row">
+                                    <div class="slidecontainer">
+                                        <span id="demo"></span>
+                                        <input type="range" min="0" max="255" value="255" class="slider" id="myRange">
+                                    </div>
+                                    <input type="color" value="#009DFF" id="outlineColor2Picker" class="colorInput" />
+                                </div>
+                            </div>
+                            <div class="lines">
+                                <div class="labeltxt">Fill</div>
+                                <div class="color-row">
+
+                                    <div class="slidecontainer">
+                                        <span id="trans-fill"></span>
+                                        <input type="range" min="0" max="255" value="50" class="slider"
+                                            id="TransparencyNVf">
+                                    </div>
+                                    <input type="color" value="#FFFFFF" id="colorInput" class="colorInput" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lines">
+                            <div class="labeltxt">Blend Mode</div>
+
+                            <select id="BlendModeV">
+                                <option value="0">Default</option>
+                                <option value="1">Screen</option>
+                                <option value="2">Add</option>
+                                <option value="3">Difference</option>
+                                <option value="4">Exclusion</option>
+                                <option value="5">Lightest</option>
+                                <option value="6">Overlay</option>
+                                <option value="7">Hard Light</option>
+                                <option value="8">Soft Light</option>
+                                <option value="9">Dodge</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <button id="closeButton"><img alt="" src="Arrow 1.svg" style="transform: rotate(180deg);"></button>
+            </div>
         </div>
-      </div>
 
-    </div>
-  </div>
+        <script>
+            document.getElementById('openButton').addEventListener('click', function () {
+                document.getElementById('info').style.display = 'block';
+                this.style.display = 'none';
+            });
 
-  <!-- Bootstrap JS and dependencies -->
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  
-  <!-- JS -->
-  <script src="eventlisteners.js"></script>
+            document.getElementById('closeButton').addEventListener('click', function () {
+                document.getElementById('info').style.display = 'none';
+                document.getElementById('openButton').style.display = 'block';
+            });
 
-  <!-- Inline JavaScript to adjust button title widths -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      // Get all elements with class 'btn-title'
-      const titles = document.querySelectorAll(".btn-title");
 
-      // Find the maximum width of the titles
-      let maxWidth = 0;
-      titles.forEach(title => {
-        const width = title.getBoundingClientRect().width;
-        if (width > maxWidth) {
-          maxWidth = width;
-        }
-      });
+            var slider = document.getElementById("myRange");
+            var output = document.getElementById("demo");
+            output.innerHTML = slider.value;
 
-      // Set the maximum width to all titles
-      titles.forEach(title => {
-        title.style.minWidth = `${maxWidth}px`;
-      });
-    });
+            slider.oninput = function () {
+                output.innerHTML = this.value;
+            }
 
-    window.addEventListener('keydown', function(e) {
-  if(e.keyCode == 32 && e.target == document.body) {
-    e.preventDefault();
-  }
-});
-  </script>
-</body>
+            function updateSliderValue(sliderId, outputId) {
+                var slider = document.getElementById(sliderId);
+                var output = document.getElementById(outputId);
+                output.innerHTML = slider.value;
+
+                slider.oninput = function () {
+                    output.innerHTML = this.value;
+                }
+            }
+
+            updateSliderValue("AmountV", "particle-val");
+            updateSliderValue("LinesNV", "connection-val");
+            updateSliderValue("TwistV", "phase-val");
+            updateSliderValue("RadiansV", "degree-val");
+            updateSliderValue("PolarityV", "polar-val");
+            updateSliderValue("TransparencyNVb", "trans-back");
+            updateSliderValue("TransparencyNVl", "trans-lines");
+            updateSliderValue("TransparencyNVf", "trans-fill");
+
+        </script>
+        <div>
+            <main style="display: flex; justify-content: center; align-items: center; height: 100vh;"></main>
+            <!-- <script src="sketch.js"></script> -->
+            <script src="newTest.js"></script>
+            <script src="controller.js"></script>
+            <script src="keys.js"></script>
+            <script src="initialValues.js"></script>
+        </div>
+
+        <!-- JS -->
+        <script src="eventlisteners.js"></script>
+    </body>
+
 </html>

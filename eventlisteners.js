@@ -9,7 +9,7 @@ document.getElementById("PolarityV").addEventListener('input', event => {
 });
 
 // updating twist number value (keyboard)
-document.getElementById("TwistV").addEventListener('input', event => {
+document.getElementById("TwistV").addEventListener('input', event => { // consider twist for both x and y independently
   twist = event.target.value;
 });
 
@@ -45,27 +45,27 @@ document.getElementById("BlendModeV").addEventListener('input', event => {
 });
 
 // updating transparency setting. Updates trans values to display(keyboard)
-document.getElementById("TransparencyV").addEventListener('input', event => {
-  transSettings = int(event.target.value);
-  let menu2 = document.getElementById("TransparencyNV");
-  if (transSettings == 0) {
-    menu2.value = backTrans;
-  } else if (transSettings == 1) {
-    menu2.value = lineTrans;
-  } else {
-    menu2.value = fillTrans;
-  }
-});
+// document.getElementById("TransparencyV").addEventListener('input', event => {
+//   transSettings = int(event.target.value);
+//   let menu2 = document.getElementById("TransparencyNV");
+//   if (transSettings == 0) {
+//     menu2.value = backTrans;
+//   } else if (transSettings == 1) {
+//     menu2.value = lineTrans;
+//   } else {
+//     menu2.value = fillTrans;
+//   }
+// });
 
 // updating back transparency, line transparency, and fill transparency value (keyboard)
-document.getElementById("TransparencyNV").addEventListener('input', event => {
-  if (transSettings == 0) {
+document.getElementById("TransparencyNVb").addEventListener('input', event => {
     backTrans = int(event.target.value);
-  } else if (transSettings == 1) {
-    lineTrans = int(event.target.value);
-  } else {
-    fillTrans = int(event.target.value);
-  }
+});
+document.getElementById("TransparencyNVl").addEventListener('input', event => {
+  lineTrans = int(event.target.value);
+});
+document.getElementById("TransparencyNVf").addEventListener('input', event => {
+  fillTrans = int(event.target.value);
 });
 
 // updating multiplier settings x and y axis' (keyboard)
@@ -94,15 +94,15 @@ document.getElementById("MultiplierYV").addEventListener('input', event => {
 // });
 
 // updating line settings. Updates line values to display (keyboard)
-document.getElementById("LinesV").addEventListener('input', event => {
-  lineSettings = int(event.target.value);
-  let menu3 = document.getElementById("LinesNV");
-  if (lineSettings == 0) {
-    menu3.value = lineCount;
-  } else {
-    menu3.value = pointSpacing;
-  }
-});
+// document.getElementById("LinesV").addEventListener('input', event => {
+//   lineSettings = int(event.target.value);
+//   let menu3 = document.getElementById("LinesNV");
+//   if (lineSettings == 0) {
+//     menu3.value = lineCount;
+//   } else {
+//     menu3.value = pointSpacing;
+//   }
+// });
 
 // updating line values (keyboard)
 document.getElementById("LinesNV").addEventListener('input', event => {

@@ -10,10 +10,11 @@ let initialY = 3;
 let multiplierX = 1;
 let multiplierY = 1;
 
-let distance = 20; 
+
+let distance = 700; 
 let polar = 0; //polarity//
 let radi = 0; //graph rotation//
-let amount = 490; //density of data present on screen//
+let amount = 500; //density of data present on screen//
 let click = 0; //menu position//
 let blend = 0; //blendmode setting//
 let startP = 0; //starting point for all points//
@@ -29,7 +30,7 @@ let fillTrans = 50;
 //point, line, triangle settings//
 let lineSettings = 0;
 let lineCount = 0;
-let pointSpacing = 10;
+let pointSpacing = 1;
 
 let bpress = 0; //prints to console if button is pressed or not//
 
@@ -161,5 +162,5 @@ let funcy = 'sin';
 
   let outlineColor1 = '#FFFFFF';
 
-  let outlineColor2 = '#000000';
+  let outlineColor2 = '#009DFF';
 

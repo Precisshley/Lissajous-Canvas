@@ -31,6 +31,7 @@ function windowResized() {
   } else {
     resizeCanvas(windowWidth, windowWidth);
   }
+  
 }
 
 function draw() {
@@ -42,15 +43,12 @@ function draw() {
   // let fps = frameRate();
   // console.log("FPS: " + fps.toFixed(2), 10, height - 10);
 
-  if (trails == 1) {
-    setBlendModeByIndex(blend);
-  } else {
-    blendMode(BLEND);
-    
+  if (trails != 1) {
     fill(red(color(backgroundColor)), green(color(backgroundColor)), blue(color(backgroundColor)), backTrans);
     rect(0, 0, width, height);
-    setBlendModeByIndex(blend);
   }
+  
+  setBlendModeByIndex(blend);
 
   particles.forEach((particle) => {
     particle.drawParticle();
@@ -70,16 +68,16 @@ class Particle {
     } else if (colour == 1) {
       stroke(255, lineTrans);
     } else if (colour == 2) {
-      let colorCount = ((frameCount + ((this.i) * pointSpacing)) % ((amount) * pointSpacing)) + startP;
+      let colorCount = ((frameCount + ((this.i) * amount)) % ((amount) * amount)) + pointSpacing;
       stroke(
-        map(colorCount, 0, ((amount) * pointSpacing), 0, 255),
-        map(colorCount, 0, ((amount) * pointSpacing), 0, 255),
-        map(colorCount, 0, ((amount) * pointSpacing), 0, 255),
+        map(colorCount, 0, ((amount) * amount), 0, 255),
+        map(colorCount, 0, ((amount) * amount), 0, 255),
+        map(colorCount, 0, ((amount) * amount), 0, 255),
         lineTrans
       );
     } else if (colour == 3) {
-      let colorCount = ((frameCount + ((this.i) * pointSpacing)) % ((amount) * pointSpacing)) + startP;
-      let c = lerpColor(color(outlineColor1), color(outlineColor2), map(colorCount, ((amount) * pointSpacing), 0, 0, 1));
+      let colorCount = ((frameCount + ((this.i) * amount)) % ((amount) * amount)) + pointSpacing;
+      let c = lerpColor(color(outlineColor1), color(outlineColor2), map(colorCount, ((amount) * amount), 0, 0, 1));
       c.setAlpha(lineTrans);
       stroke(c);
     } else if (colour == 4) {
@@ -122,17 +120,18 @@ class Particle {
       if (lineCount == 0){ 
         point(points[0], points[1]);
       } else {
-        beginShape();
-        vertex(points[0], points[1]);
+        
         // ellipse(...this.getPoints(),mouseY,mouseY); // testing circles
-        if (this.i + lineCount + 1 <= particles.length){ //maybe working
-        for (var j = 0; j < lineCount + 1; j++) {
-          const nextPoints = particles[this.i + j].getPoints();
-          vertex(nextPoints[0], nextPoints[1]);
+        if (this.i + lineCount + 1 <= amount){ //maybe working
+          
+          beginShape();
+          vertex(points[0], points[1]);
+          for (var j = 0; j <= lineCount; j++) {
+            const nextPoints = particles[this.i + j].getPoints();
+            vertex(nextPoints[0], nextPoints[1]);
           }
+          endShape();
         }
-        vertex(points[0], points[1]);
-        endShape();
       }
 
       // data[i] = data[i] + speed;
@@ -143,7 +142,9 @@ class Particle {
   getPoints() {
 
     //points move out based on framecount, resets when point reaches outer rim
-    let calc = ((frameCount + ((this.i) * pointSpacing)) % ((amount) * pointSpacing)) + startP;
+    //let calc = ((frameCount + ((this.i) * pointSpacing)) % ((amount) * pointSpacing)) + startP;
+    let calc = ((frameCount + ((this.i) * amount)) % ((amount) * amount)) + pointSpacing;
+
 
     let start = calc / distance;
     let starty = calc / lissaX * twist;
@@ -158,14 +159,13 @@ class Particle {
 
   calcPolar(x, y) {
     let X = x * Math.cos(radians(y));
-    let Y = x * Math.sin(radians(y));
+    let Y = x * Math.sin(radians(y)); // add setting to choose cos and sin and tan here
     return [X, Y]
   }
 
   getPolar(a, b) {
     let ab = [a, b];
     for (var i = 0; i < polar; i++) {
-      // ab = this.calcPolar.apply(null, ab)
       ab = this.calcPolar(ab[0], ab[1]);
     }
     return ab
